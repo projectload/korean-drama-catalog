@@ -32,12 +32,12 @@ input{-webkit-user-select:text;user-select:text}
 .who{display:flex;flex-direction:column;gap:10px;width:100%;max-width:340px;margin-top:8px}
 .who-btn{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-size:18px;font-weight:700;text-align:right;min-height:60px}
 .who-btn:active{transform:scale(.98);background:var(--field)}
-.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:17px;line-height:1;padding-top:.12em;color:#0e1118;flex:none}
+.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:17px;line-height:1;padding-top:.12em;color:#0e1118;flex:none}
 .name-row{display:flex;gap:8px;width:100%;max-width:340px}
 .field{flex:1;color:#fff;-webkit-text-fill-color:#fff;background:var(--field);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:16px;min-height:50px;outline:none}
 .field:focus{border-color:var(--accent)}
 .field::placeholder{color:#7f8aa0;-webkit-text-fill-color:#7f8aa0}
-.primary{background:var(--accent);color:#0b1a14;font-weight:800;border-radius:14px;padding:12px 18px;min-height:50px;font-size:16px}
+.primary{background:var(--accent);color:#0b1a14;font-weight:700;border-radius:14px;padding:12px 18px;min-height:50px;font-size:16px}
 .primary:active{filter:brightness(.92)}
 .muted{color:var(--sub);font-size:13px}
 
@@ -45,8 +45,8 @@ input{-webkit-user-select:text;user-select:text}
 #app{min-height:100dvh;padding-bottom:calc(var(--nav) + var(--sab) + 8px)}
 .topbar{position:sticky;top:0;z-index:10;background:#0e1118;padding:calc(10px + var(--sat)) max(16px,var(--sar)) 10px max(16px,var(--sal));border-bottom:1px solid #ffffff0d}
 .tb-row{display:flex;align-items:center;gap:10px;max-width:1100px;margin:auto}
-.tb-title{font-size:24px;font-weight:800;flex:1;color:#fff;line-height:1.5}
-.tb-me{display:flex;align-items:center;gap:7px;background:var(--c,#7de1be);color:#0b1020;border:0;border-radius:999px;padding:7px 14px;font-size:15px;font-weight:800;line-height:1.6;white-space:nowrap}
+.tb-title{font-size:24px;font-weight:700;flex:1;color:#fff;line-height:1.5}
+.tb-me{display:flex;align-items:center;gap:7px;background:var(--c,#7de1be);color:#0b1020;border:0;border-radius:999px;padding:7px 14px;font-size:15px;font-weight:700;line-height:1.6;white-space:nowrap}
 .tb-me span{line-height:1.6}
 .search-wrap{max-width:1100px;margin:10px auto 0;position:relative}
 .search-wrap input{width:100%;background:var(--field);border:1px solid transparent;border-radius:12px;padding:10px 40px 10px 14px;font-size:16px;min-height:44px;outline:none}
@@ -73,11 +73,11 @@ main{max-width:1100px;margin:auto;padding:14px max(14px,var(--sar)) 0 max(14px,v
 .card:active{transform:scale(.97)}
 .poster{aspect-ratio:2/3;background:linear-gradient(145deg,#26344d,#111827);position:relative;display:grid;place-items:center;color:#abb8ce;font-size:13px;text-align:center;padding:10px;width:100%}
 .poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.badge{position:absolute;top:8px;left:8px;z-index:1;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:800;color:#0b1a14;box-shadow:0 2px 8px #0007}
+.badge{position:absolute;top:8px;left:8px;z-index:1;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700;color:#0b1a14;box-shadow:0 2px 8px #0007}
 .badge.seen{background:#2fd39a}.badge.watching{background:#f5b942}
 .card.seen{border-color:#2bb58a88}.card.watching{border-color:#f0b44c88}
 .card .info{padding:9px 10px 10px;display:flex;flex-direction:column;gap:3px}
-.card .t{font-size:14px;font-weight:750;direction:ltr;text-align:left;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .t{font-size:14px;font-weight:700;direction:ltr;text-align:left;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card .m{font-size:11px;color:var(--sub)}
 .card .by{line-height:1.8;font-size:11px;color:var(--accent);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .empty{text-align:center;color:var(--sub);padding:60px 20px;line-height:1.8}
@@ -90,7 +90,7 @@ main{max-width:1100px;margin:auto;padding:14px max(14px,var(--sar)) 0 max(14px,v
 .item .thumb{width:44px;height:64px;flex:none;border-radius:8px;overflow:hidden;background:linear-gradient(145deg,#26344d,#111827);display:grid;place-items:center;font-size:18px}
 .item .thumb img{width:100%;height:100%;object-fit:cover}
 .item .txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
-.item .show{line-height:1.6;font-size:15px;font-weight:750;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .show{line-height:1.6;font-size:15px;font-weight:700;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .item .act{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px}
 .item .by-pill{background:color-mix(in srgb,var(--c) 22%,transparent);color:var(--c);border-radius:999px;padding:3px 10px;font-weight:700;line-height:1.4;white-space:nowrap}
 .item .st{color:var(--sub)}.item .st.seen{color:var(--seen)}.item .st.watching{color:var(--watch)}
@@ -125,11 +125,11 @@ nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#141925;bo
 .sh-head{display:flex;gap:14px;align-items:flex-start}
 .sh-poster{width:92px;flex:none;aspect-ratio:2/3;border-radius:10px;overflow:hidden;background:linear-gradient(145deg,#26344d,#111827);position:relative}
 .sh-poster img{width:100%;height:100%;object-fit:cover}
-.sh-title{font-size:20px;font-weight:800;direction:ltr;text-align:left;margin:2px 0 6px;line-height:1.3}
+.sh-title{font-size:20px;font-weight:700;direction:ltr;text-align:left;margin:2px 0 6px;line-height:1.3}
 .sh-meta{color:var(--sub);font-size:13px}
 .sh-last{margin-top:8px;font-size:13px;color:var(--accent)}
 .status-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 10px}
-.sbtn{--k:#8fa3c7;background:color-mix(in srgb,var(--k) 12%,var(--field));color:var(--k);border:2px solid color-mix(in srgb,var(--k) 30%,transparent);border-radius:14px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:14px;font-weight:800;min-height:76px;line-height:1.5;transition:background .15s,transform .1s}
+.sbtn{--k:#8fa3c7;background:color-mix(in srgb,var(--k) 12%,var(--field));color:var(--k);border:2px solid color-mix(in srgb,var(--k) 30%,transparent);border-radius:14px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:14px;font-weight:700;min-height:76px;line-height:1.5;transition:background .15s,transform .1s}
 .sbtn[data-s=none]{--k:#9fb0d0}
 .sbtn[data-s=watching]{--k:#f5b942}
 .sbtn[data-s=seen]{--k:#2fd39a}
@@ -257,7 +257,7 @@ label.blk{margin-bottom:10px}
 <input type="file" id="file" accept=".json" hidden>
 
 <script>
-const BUILD='1795382931';
+const BUILD='1795383501';
 const BUILTIN=[{"id": 1, "name": "Mouse", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 2, "name": "Beyond Evil", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 3, "name": "Flower of Evil", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 4, "name": "Through the Darkness", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 5, "name": "Blind", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 6, "name": "Nine Puzzles", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 7, "name": "Black Out", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 8, "name": "The Killing Vote", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 9, "name": "Tell Me What You Saw", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 10, "name": "Queen Mantis", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 11, "name": "The Worst of Evil", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 12, "name": "My Name", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 13, "name": "Bloodhounds", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 14, "name": "Mercy for None", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 15, "name": "Gangnam B-Side", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 16, "name": "Vincenzo", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 17, "name": "Narco-Saints", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 18, "name": "A Shop for Killers", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 19, "name": "Trigger", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 20, "name": "Low Life", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 21, "name": "Taxi Driver", "year": 2021, "genre": "انتقام ومؤامرات"}, {"id": 22, "name": "The Manipulated", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 23, "name": "Big Mouth", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 24, "name": "The Glory", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 25, "name": "Vigilante", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 26, "name": "Revenge of Others", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 27, "name": "Karma", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 28, "name": "Buried Hearts", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 29, "name": "The Veil", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 30, "name": "Weak Hero Class 1", "year": 2022, "genre": "أكشن ومخابرات"}, {"id": 31, "name": "Weak Hero Class 2", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 32, "name": "Study Group", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 33, "name": "Moving", "year": 2023, "genre": "أكشن ومخابرات"}, {"id": 34, "name": "Good Boy", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 35, "name": "A Killer Paradox", "year": 2024, "genre": "غموض نفسي"}, {"id": 36, "name": "The Frog", "year": 2024, "genre": "غموض نفسي"}, {"id": 37, "name": "The Price of Confession", "year": 2025, "genre": "غموض نفسي"}, {"id": 38, "name": "The Hunter with a Scalpel", "year": 2025, "genre": "غموض نفسي"}, {"id": 39, "name": "Hyper Knife", "year": 2025, "genre": "غموض نفسي"}, {"id": 40, "name": "As You Stood By", "year": 2025, "genre": "غموض نفسي"}, {"id": 41, "name": "Nobody Knows", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 42, "name": "Stranger 2", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 43, "name": "The Good Detective", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 44, "name": "Extracurricular", "year": 2020, "genre": "عصابات وأكشن"}, {"id": 45, "name": "Train", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 46, "name": "Kairos", "year": 2020, "genre": "غموض نفسي"}, {"id": 47, "name": "Awaken", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 48, "name": "Memorist", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 49, "name": "365: Repeat the Year", "year": 2020, "genre": "غموض نفسي"}, {"id": 50, "name": "Team Bulldog: Off-duty Investigation", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 51, "name": "Chimera", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 52, "name": "Hometown", "year": 2021, "genre": "غموض نفسي"}, {"id": 53, "name": "One Ordinary Day", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 54, "name": "Bad and Crazy", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 55, "name": "D.P.", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 56, "name": "Inspector Koo", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 57, "name": "The King of Pigs", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 58, "name": "A Model Family", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 59, "name": "Insider", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 60, "name": "Military Prosecutor Doberman", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 61, "name": "Grid", "year": 2022, "genre": "غموض نفسي"}, {"id": 62, "name": "Connect", "year": 2022, "genre": "غموض نفسي"}, {"id": 63, "name": "Bargain", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 64, "name": "Decoy", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 65, "name": "Longing for You", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 66, "name": "The Kidnapping Day", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 67, "name": "Evilive", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 68, "name": "The Deal", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 69, "name": "Payback: Money and Power", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 70, "name": "The Escape of the Seven", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 71, "name": "Connection", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 72, "name": "Crash", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 73, "name": "Flex X Cop", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 74, "name": "The Bequeathed", "year": 2024, "genre": "غموض نفسي"}, {"id": 75, "name": "Pyramid Game", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 76, "name": "The Whirlwind", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 77, "name": "The Tyrant", "year": 2024, "genre": "أكشن ومخابرات"}, {"id": 78, "name": "No Way Out: The Roulette", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 79, "name": "Doubt", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 80, "name": "The Judge from Hell", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 81, "name": "Unmasked", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 82, "name": "The Defects", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 83, "name": "Tempest", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 84, "name": "Made in Korea", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 85, "name": "No Mercy", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 86, "name": "Walking on Thin Ice", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 87, "name": "Villains", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 88, "name": "Shark: The Storm", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 89, "name": "Undercover High School", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 90, "name": "Friendly Rivalry", "year": 2025, "genre": "غموض نفسي"}];
 let shows=BUILTIN.slice(),byId={};
 function rebuild(){let hid=new Set((data.hidden||[]).map(h=>h.id));shows=BUILTIN.filter(s=>!hid.has(s.id)).concat((data.custom||[]).map(c=>({id:c.id,name:c.name,year:c.year||'',genre:c.genre||'أخرى',custom:true,by:c.by,at:c.at,poster:c.poster})));byId=Object.fromEntries(shows.map(s=>[s.id,s]))}
@@ -386,7 +386,7 @@ function render(){
     let stat=n=>{let seen=0,watching=0;for(const id in data.states){let x=data.states[id];if(x.by===n){if(x.s==='seen')seen++;if(x.s==='watching')watching++}}return {seen,watching}};
     let lastSeen=n=>{let u=(data.users||[]).find(u=>u.name===n);return u?ago(u.at):''};
     v.innerHTML=`
-    <div class="section"><h3>أنت</h3><div class="row">${avatar(ME,44)}<div class="grow"><div style="font-weight:800;font-size:17px">${esc(ME)}</div><div class="muted">مسجّل على هذا الجهاز</div></div></div>
+    <div class="section"><h3>أنت</h3><div class="row">${avatar(ME,44)}<div class="grow"><div style="font-weight:700;font-size:17px">${esc(ME)}</div><div class="muted">مسجّل على هذا الجهاز</div></div></div>
       <button class="row" id="switchUser"><span class="grow">تبديل المستخدم</span><span class="v">‹</span></button></div>
     <div class="section"><h3>المشتركين</h3><div class="people">${people.map(n=>{let x=stat(n);return `<div class="person">${avatar(n)}<div><b>${esc(n)}</b><small>✓ ${x.seen} · ▶ ${x.watching}${lastSeen(n)?' · نشط '+lastSeen(n):''}</small></div></div>`}).join('')||'<div class="muted">لا أحد للحين</div>'}</div></div>
     <div class="section"><h3>المشاركة</h3>
