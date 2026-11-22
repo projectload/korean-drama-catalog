@@ -40,6 +40,7 @@ export async function onRequestDelete({ request, env }) {
     db.prepare('DELETE FROM shows WHERE id = ?1').bind(id),
     db.prepare('DELETE FROM states WHERE id = ?1').bind(id),
     db.prepare('DELETE FROM log WHERE id = ?1').bind(id),
+    db.prepare('DELETE FROM posters WHERE id = ?1').bind(id),
   ]);
   return json({ ok: true, ...(await snapshot(db)) });
 }

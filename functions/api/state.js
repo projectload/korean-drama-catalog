@@ -25,6 +25,7 @@ export async function ensureSchema(db) {
     db.prepare('CREATE TABLE IF NOT EXISTS states (id INTEGER PRIMARY KEY, state TEXT NOT NULL, updated_at INTEGER NOT NULL)'),
     db.prepare('CREATE TABLE IF NOT EXISTS log (rowid INTEGER PRIMARY KEY AUTOINCREMENT, id INTEGER NOT NULL, state TEXT NOT NULL, by TEXT NOT NULL, at INTEGER NOT NULL)'),
     db.prepare('CREATE TABLE IF NOT EXISTS users (name TEXT PRIMARY KEY, last_seen INTEGER NOT NULL)'),
+    db.prepare('CREATE TABLE IF NOT EXISTS posters (id INTEGER PRIMARY KEY, url TEXT, source TEXT, by TEXT, at INTEGER NOT NULL)'),
     db.prepare('CREATE TABLE IF NOT EXISTS shows (id INTEGER PRIMARY KEY, name TEXT NOT NULL, year INTEGER, genre TEXT, poster TEXT, added_by TEXT, added_at INTEGER NOT NULL)'),
   ]);
   try {
@@ -35,18 +36,22 @@ export async function ensureSchema(db) {
 }
 
 export async function snapshot(db) {
-  const [st, lg, us, sh] = await db.batch([
+  const [st, lg, us, sh, po] = await db.batch([
     db.prepare("SELECT id, state, updated_at, updated_by FROM states WHERE state != 'none' OR updated_by IS NOT NULL"),
     db.prepare('SELECT id, state, by, at FROM log ORDER BY rowid DESC LIMIT 150'),
     db.prepare('SELECT name, last_seen FROM users ORDER BY last_seen DESC'),
     db.prepare('SELECT id, name, year, genre, poster, added_by, added_at FROM shows ORDER BY id'),
+    db.prepare('SELECT id, url FROM posters'),
   ]);
+  const posters = {};
+  for (const r of po.results) posters[r.id] = r.url;
   const states = {};
   for (const r of st.results) states[r.id] = { s: r.state, by: r.updated_by || null, at: r.updated_at };
   return {
     states,
     log: lg.results.map((r) => ({ id: r.id, s: r.state, by: r.by, at: r.at })),
     users: us.results.map((r) => ({ name: r.name, at: r.last_seen })),
+    posters,
     custom: sh.results.map((r) => ({ id: r.id, name: r.name, year: r.year, genre: r.genre, poster: r.poster, by: r.added_by, at: r.added_at })),
   };
 }

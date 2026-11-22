@@ -113,7 +113,7 @@ nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#141925f2;
 /* Bottom sheet */
 .backdrop{position:fixed;inset:0;background:#000a;z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
 .backdrop.show{opacity:1;pointer-events:auto}
-.sheet{position:fixed;left:0;right:0;bottom:0;z-index:31;background:var(--bar);border-radius:22px 22px 0 0;padding:8px 18px calc(18px + var(--sab));transform:translateY(105%);transition:transform .25s cubic-bezier(.2,.8,.2,1);max-height:88dvh;overflow:auto;max-width:640px;margin:auto;box-shadow:0 -10px 40px #0009}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:31;background:var(--bar);border-radius:22px 22px 0 0;padding:8px 18px calc(18px + var(--sab));transform:translateY(105%);transition:transform .25s cubic-bezier(.2,.8,.2,1);max-height:88dvh;overflow-y:auto;overflow-x:hidden;max-width:640px;margin:auto;box-shadow:0 -10px 40px #0009}
 .sheet.show{transform:none}
 .grab{width:40px;height:5px;border-radius:9px;background:#ffffff30;margin:4px auto 12px}
 .sh-head{display:flex;gap:14px;align-items:flex-start}
@@ -149,6 +149,13 @@ nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#141925f2;
 .add-prev{display:flex;gap:12px;align-items:flex-start}
 .add-prev .sh-poster{width:80px}
 select.field{-webkit-appearance:none;appearance:none;flex:1;min-width:0}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.pick{min-width:0;display:flex;flex-direction:column;gap:4px;background:var(--card);border-radius:10px;padding:4px;text-align:center}
+.pick img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:7px;background:var(--field)}
+.pick small{font-size:10px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pick:active{outline:2px solid var(--accent)}
+button.sh-poster{padding:0;border:0;display:grid;place-items:center;color:var(--sub);font-size:11px}
+.noposter{line-height:1.6}
 .del{width:100%;margin-top:10px;background:#ff8f7a1a;color:var(--danger);border-radius:12px;padding:12px;font-weight:700;min-height:48px}
 @media (min-width:700px){.fab{bottom:110px;left:max(24px,calc(50% - 300px))}.grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px}.summary{max-width:520px}nav.tabs{max-width:560px;margin:auto;left:0;right:0;bottom:12px;border-radius:20px;border:1px solid #ffffff14;padding-bottom:6px}#app{padding-bottom:110px}.toast{bottom:100px}}
 @media (hover:hover){.card:hover{border-color:#ffffff40}.tab:hover{color:var(--txt)}}
@@ -217,7 +224,8 @@ select.field{-webkit-appearance:none;appearance:none;flex:1;min-width:0}
 <script>
 const BUILTIN=[{"id": 1, "name": "Mouse", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 2, "name": "Beyond Evil", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 3, "name": "Flower of Evil", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 4, "name": "Through the Darkness", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 5, "name": "Blind", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 6, "name": "Nine Puzzles", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 7, "name": "Black Out", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 8, "name": "The Killing Vote", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 9, "name": "Tell Me What You Saw", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 10, "name": "Queen Mantis", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 11, "name": "The Worst of Evil", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 12, "name": "My Name", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 13, "name": "Bloodhounds", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 14, "name": "Mercy for None", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 15, "name": "Gangnam B-Side", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 16, "name": "Vincenzo", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 17, "name": "Narco-Saints", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 18, "name": "A Shop for Killers", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 19, "name": "Trigger", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 20, "name": "Low Life", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 21, "name": "Taxi Driver", "year": 2021, "genre": "انتقام ومؤامرات"}, {"id": 22, "name": "The Manipulated", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 23, "name": "Big Mouth", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 24, "name": "The Glory", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 25, "name": "Vigilante", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 26, "name": "Revenge of Others", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 27, "name": "Karma", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 28, "name": "Buried Hearts", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 29, "name": "The Veil", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 30, "name": "Weak Hero Class 1", "year": 2022, "genre": "أكشن ومخابرات"}, {"id": 31, "name": "Weak Hero Class 2", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 32, "name": "Study Group", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 33, "name": "Moving", "year": 2023, "genre": "أكشن ومخابرات"}, {"id": 34, "name": "Good Boy", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 35, "name": "A Killer Paradox", "year": 2024, "genre": "غموض نفسي"}, {"id": 36, "name": "The Frog", "year": 2024, "genre": "غموض نفسي"}, {"id": 37, "name": "The Price of Confession", "year": 2025, "genre": "غموض نفسي"}, {"id": 38, "name": "The Hunter with a Scalpel", "year": 2025, "genre": "غموض نفسي"}, {"id": 39, "name": "Hyper Knife", "year": 2025, "genre": "غموض نفسي"}, {"id": 40, "name": "As You Stood By", "year": 2025, "genre": "غموض نفسي"}, {"id": 41, "name": "Nobody Knows", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 42, "name": "Stranger 2", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 43, "name": "The Good Detective", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 44, "name": "Extracurricular", "year": 2020, "genre": "عصابات وأكشن"}, {"id": 45, "name": "Train", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 46, "name": "Kairos", "year": 2020, "genre": "غموض نفسي"}, {"id": 47, "name": "Awaken", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 48, "name": "Memorist", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 49, "name": "365: Repeat the Year", "year": 2020, "genre": "غموض نفسي"}, {"id": 50, "name": "Team Bulldog: Off-duty Investigation", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 51, "name": "Chimera", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 52, "name": "Hometown", "year": 2021, "genre": "غموض نفسي"}, {"id": 53, "name": "One Ordinary Day", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 54, "name": "Bad and Crazy", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 55, "name": "D.P.", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 56, "name": "Inspector Koo", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 57, "name": "The King of Pigs", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 58, "name": "A Model Family", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 59, "name": "Insider", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 60, "name": "Military Prosecutor Doberman", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 61, "name": "Grid", "year": 2022, "genre": "غموض نفسي"}, {"id": 62, "name": "Connect", "year": 2022, "genre": "غموض نفسي"}, {"id": 63, "name": "Bargain", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 64, "name": "Decoy", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 65, "name": "Longing for You", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 66, "name": "The Kidnapping Day", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 67, "name": "Evilive", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 68, "name": "The Deal", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 69, "name": "Payback: Money and Power", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 70, "name": "The Escape of the Seven", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 71, "name": "Connection", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 72, "name": "Crash", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 73, "name": "Flex X Cop", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 74, "name": "The Bequeathed", "year": 2024, "genre": "غموض نفسي"}, {"id": 75, "name": "Pyramid Game", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 76, "name": "The Whirlwind", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 77, "name": "The Tyrant", "year": 2024, "genre": "أكشن ومخابرات"}, {"id": 78, "name": "No Way Out: The Roulette", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 79, "name": "Doubt", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 80, "name": "The Judge from Hell", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 81, "name": "Unmasked", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 82, "name": "The Defects", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 83, "name": "Tempest", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 84, "name": "Made in Korea", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 85, "name": "No Mercy", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 86, "name": "Walking on Thin Ice", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 87, "name": "Villains", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 88, "name": "Shark: The Storm", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 89, "name": "Undercover High School", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 90, "name": "Friendly Rivalry", "year": 2025, "genre": "غموض نفسي"}];
 let shows=BUILTIN.slice(),byId={};
-function rebuild(){shows=BUILTIN.concat((data.custom||[]).map(c=>({id:c.id,name:c.name,year:c.year||'',genre:c.genre||'أخرى',custom:true,by:c.by,at:c.at,poster:c.poster})));byId=Object.fromEntries(shows.map(s=>[s.id,s]));shows.forEach(s=>{if(s.poster&&!posters[s.id])posters[s.id]=s.poster})}
+function rebuild(){shows=BUILTIN.concat((data.custom||[]).map(c=>({id:c.id,name:c.name,year:c.year||'',genre:c.genre||'أخرى',custom:true,by:c.by,at:c.at,poster:c.poster})));byId=Object.fromEntries(shows.map(s=>[s.id,s]))}
+const posterOf=id=>{let sp=data.posters||{};if(sp[id])return sp[id];let s=byId[id];return (s&&s.poster)||posters[id]||''};
 const LS={key:'kd_key',me:'kd_me',cache:'kd_cache_v2',posters:'kdrama90_posters_v1'};
 const ls={get(k,d){try{let v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const $=id=>document.getElementById(id);
@@ -253,7 +261,7 @@ async function api(method,body,path){
   return res.json();
 }
 function syncState(cls,txt){let el=$('sync');el.className='sync '+(cls||'');$('syncTxt').textContent=txt}
-function apply(d){let before=JSON.stringify(data.custom||[]);data={states:d.states||{},log:d.log||[],users:d.users||[],custom:d.custom||[]};ls.set(LS.cache,data);rebuild();if(JSON.stringify(data.custom)!==before)renderChips()}
+function apply(d){let before=JSON.stringify(data.custom||[]);data={states:d.states||{},log:d.log||[],users:d.users||[],custom:d.custom||[],posters:d.posters||{}};ls.set(LS.cache,data);rebuild();if(JSON.stringify(data.custom)!==before)renderChips()}
 async function pull(first){
   if(pending)return;
   try{let d=await api('GET');if(pending)return;apply(d);if(first)boot();else{render();refreshSheet()}syncState('','متزامن · '+new Date().toLocaleTimeString('ar',{hour:'numeric',minute:'2-digit'}))}
@@ -310,7 +318,7 @@ function filtered(list){
 function cardHTML(s){
   let x=data.states[s.id],state=st(s.id);
   let badge=state==='none'?'':`<span class="badge ${state}">${state==='seen'?'✓ شاهدته':'▶ أشاهده'}</span>`;
-  let img=posters[s.id]?`<img src="${esc(posters[s.id])}" loading="lazy" alt="" onerror="this.remove()">`:'';
+  let pu=posterOf(s.id),img=pu?`<img src="${esc(pu)}" loading="lazy" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:'';
   let by=x&&x.by&&state!=='none'?`<div class="by">${esc(x.by)} · ${ago(x.at)}</div>`:'';
   return `<button class="card ${state==='none'?'':state}" data-id="${s.id}"><div class="poster">${badge}<span>🎬<br>${esc(s.name)}</span>${img}</div><div class="info"><div class="t">${esc(s.name)}</div><div class="m">${s.year?s.year+' · ':''}${esc(s.genre)}${s.custom?' · ➕':''}</div>${by}</div></button>`;
 }
@@ -363,17 +371,19 @@ function render(){
 function openSheet(id){openId=id;refreshSheet();$('backdrop').classList.add('show');$('sheet').classList.add('show')}
 function closeSheet(){openId=null;$('backdrop').classList.remove('show');$('sheet').classList.remove('show')}
 function refreshSheet(){
-  if(openId==null||openId==='add')return;let s=byId[openId],x=data.states[openId],state=st(openId);
+  if(openId==null||typeof openId!=='number')return;let s=byId[openId],x=data.states[openId],state=st(openId);
   let hist=data.log.filter(l=>l.id===openId).slice(0,6);
   $('sheet').innerHTML=`<div class="grab"></div>
-  <div class="sh-head"><div class="sh-poster">${posters[s.id]?`<img src="${esc(posters[s.id])}" alt="">`:''}</div>
+  <div class="sh-head"><button class="sh-poster" id="chgPoster" aria-label="تغيير البوستر">${posterOf(s.id)?`<img src="${esc(posterOf(s.id))}" alt="" referrerpolicy="no-referrer">`:'<span class="noposter">🖼<br>إضافة بوستر</span>'}</button>
   <div style="flex:1;min-width:0"><div class="sh-title">${esc(s.name)}</div><div class="sh-meta">${s.year} · ${esc(s.genre)}</div>
   ${x&&x.by?`<div class="sh-last">${avatar(x.by,22)} آخر تعديل: ${esc(x.by)} — ${ago(x.at)}</div>`:'<div class="sh-last muted">ما أحد عدّل عليه للحين</div>'}</div></div>
   <div class="status-btns">${['none','watching','seen'].map(k=>`<button class="sbtn ${state===k?'on':''}" data-s="${k}"><span class="ic">${{none:'◯',watching:'▶',seen:'✓'}[k]}</span>${LABEL[k]}</button>`).join('')}</div>
   ${hist.length?`<div class="sh-hist"><div class="muted" style="border:0">السجل</div>${hist.map(l=>`<div>${esc(l.by)}: ${l.s==='added'?'أضافه للقائمة':LABEL[l.s]} — ${ago(l.at)}</div>`).join('')}</div>`:''}
-  <a class="link" href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(s.name+' '+s.year+' Korean drama poster')}" target="_blank" rel="noopener">🔎 ابحث عن البوستر</a>
+  <a class="link" href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(s.name+' '+s.year+' Korean drama poster')}" target="_blank" rel="noopener">🔎 ابحث عن البوستر في Google</a>
+  <button class="link" id="chgPoster2" style="display:block">🖼 تغيير البوستر</button>
   ${s.custom?`<button class="del" id="delShow">🗑 حذف المسلسل من القائمة</button><div class="muted">أضافه ${esc(s.by||'')} ${s.at?ago(s.at):''}</div>`:''}`;
   $('sheet').querySelectorAll('.sbtn').forEach(b=>b.onclick=()=>{setState(openId,b.dataset.s);setTimeout(closeSheet,250)});
+  $('chgPoster').onclick=$('chgPoster2').onclick=()=>openPosterPicker(openId);
   let del=$('delShow');if(del)del.onclick=async()=>{if(!del.dataset.sure){del.dataset.sure=1;del.textContent='اضغط مرة ثانية للتأكيد';return}
     let id=openId;closeSheet();try{let d=await api('DELETE',null,'/api/shows?id='+id);apply(d);render();toast('تم حذف المسلسل')}catch(e){toast('تعذّر الحذف — تحقق من الاتصال')}};
 }
@@ -445,20 +455,58 @@ async function shareLink(){
 function exportData(){let b=new Blob([JSON.stringify({version:2,states:Object.fromEntries(Object.entries(data.states).map(([k,v])=>[k,v.s]))},null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='korean-drama-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);toast('تم حفظ النسخة')}
 $('file').onchange=async e=>{let f=e.target.files[0];if(!f)return;e.target.value='';try{let o=JSON.parse(await f.text());if(!o.states)throw 0;let d=await api('POST',{states:o.states,by:ME});apply(d);render();toast('تم الاسترجاع')}catch(err){toast('ملف غير صالح أو لا يوجد اتصال')}};
 
-/* ---------- Posters (TVmaze) ---------- */
-async function loadPosters(){
-  for(const s of shows.filter(s=>!posters[s.id])){
-    try{let r=await fetch('https://api.tvmaze.com/search/shows?q='+encodeURIComponent(s.name));if(r.ok){let arr=(await r.json()).filter(x=>x.show&&x.show.image);
-      let pick=arr.find(x=>x.show.name.toLowerCase()===s.name.toLowerCase())||arr.find(x=>x.show.premiered&&Math.abs(parseInt(x.show.premiered)-s.year)<=1);
-      if(pick){posters[s.id]=pick.show.image.medium;ls.set(LS.posters,posters);let img=document.querySelector(`.card[data-id="${s.id}"] .poster`);if(img&&!img.querySelector('img'))img.insertAdjacentHTML('beforeend',`<img src="${esc(posters[s.id])}" loading="lazy" alt="">`)}}}catch(e){}
-    await new Promise(r=>setTimeout(r,550));
-  }
+/* ---------- Posters (resolved on the server, shared) ---------- */
+let resolving=false;
+async function resolveMissing(){
+  if(resolving||!KEY)return;resolving=true;
+  try{for(let round=0;round<30;round++){
+    let sp=data.posters||{};
+    let miss=shows.filter(s=>!(s.id in sp)&&!(s.custom&&s.poster)).slice(0,6);
+    if(!miss.length)break;
+    let d=await api('POST',{items:miss.map(s=>({id:s.id,name:s.name,year:s.year}))},'/api/posters?resolve');
+    if(!pending){apply(d);render()}
+    let got=miss.filter(x=>x.id in (data.posters||{})).length;
+    await new Promise(r=>setTimeout(r,got?1800:8000));
+  }}catch(e){}
+  resolving=false;
+}
+function openPosterPicker(id){
+  let s=byId[id];openId='poster:'+id;
+  $('sheet').innerHTML=`<div class="grab"></div><h2 class="add-h">🖼 تغيير البوستر</h2>
+  <div class="muted" style="margin-bottom:8px" dir="ltr">${esc(s.name)}${s.year?' ('+s.year+')':''}</div>
+  <input class="field wide" id="pQ" value="${esc(s.name)}" dir="auto" enterkeyhint="search" autocomplete="off">
+  <div class="muted" id="pHint" style="margin-top:8px">جاري البحث…</div>
+  <div class="pgrid" id="pRes"></div>
+  <div class="muted" style="margin:14px 0 6px">أو ألصق رابط صورة:</div>
+  <div class="name-row" style="max-width:none"><input class="field" id="pUrl" placeholder="https://…" dir="ltr" inputmode="url"><button class="primary" id="pSave">حفظ</button></div>`;
+  $('backdrop').classList.add('show');$('sheet').classList.add('show');
+  let t;$('pQ').oninput=e=>{clearTimeout(t);t=setTimeout(()=>posterSearch(e.target.value,id),400)};
+  $('pSave').onclick=()=>savePoster(id,$('pUrl').value.trim());
+  posterSearch(s.name,id);
+}
+async function posterSearch(q,id){
+  q=q.trim();if(q.length<2)return;let out=[],seen=new Set();
+  const add=(u,label)=>{if(u&&!seen.has(u)){seen.add(u);out.push({u,label})}};
+  try{let arr=await fetch('https://api.tvmaze.com/search/shows?q='+encodeURIComponent(q)).then(r=>r.json());
+    for(const x of arr.slice(0,6)){let sh=x.show;if(sh.image)add(sh.image.medium,sh.name+' '+(sh.premiered||'').slice(0,4))}
+    let kr=arr.find(x=>x.show.language==='Korean');
+    if(kr){let ss=await fetch(`https://api.tvmaze.com/shows/${kr.show.id}/seasons`).then(r=>r.json());ss.forEach(se=>se.image&&add(se.image.medium,kr.show.name+' — الموسم '+se.number))}}catch(e){}
+  try{let j=await fetch('https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrlimit=4&prop=pageimages&pilicense=any&piprop=thumbnail&pithumbsize=400&gsrsearch='+encodeURIComponent(q+' South Korean television series')).then(r=>r.json());
+    Object.values((j.query||{}).pages||{}).sort((a,b)=>a.index-b.index).forEach(p=>p.thumbnail&&add(p.thumbnail.source.split('?')[0],'ويكيبيديا: '+p.title))}catch(e){}
+  if(!$('pRes')||$('pQ').value.trim()!==q)return;
+  $('pHint').textContent=out.length?'اضغط على البوستر الصحيح:':'ما لقيت صور — جرّب اسم ثاني أو ألصق رابط';
+  $('pRes').innerHTML=out.map((o,i)=>`<button class="pick" data-i="${i}"><img src="${esc(o.u)}" alt="" loading="lazy" referrerpolicy="no-referrer"><small dir="auto">${esc(o.label)}</small></button>`).join('');
+  $('pRes').querySelectorAll('.pick').forEach(b=>b.onclick=()=>savePoster(id,out[+b.dataset.i].u));
+}
+async function savePoster(id,url){
+  if(!/^https:\/\//.test(url)){toast('الرابط لازم يبدأ بـ https://');return}
+  haptic();try{let d=await api('POST',{id,url,by:ME},'/api/posters');apply(d);render();toast('✓ تم تغيير البوستر');openSheet(id)}catch(e){toast('تعذّر الحفظ — تحقق من الاتصال')}
 }
 
 /* ---------- Start ---------- */
 renderChips();
 if(!KEY){showScreen('noaccess')}
-else{if(ME)boot();pull(true);loadPosters();
+else{if(ME)boot();pull(true).then(resolveMissing);
   setInterval(()=>{if(!document.hidden)pull()},15000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)pull()});}
 </script>
