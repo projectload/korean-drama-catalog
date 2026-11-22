@@ -426,8 +426,8 @@ function openFull(html){$('sheet').classList.add('full');$('sheet').innerHTML=ht
 function openAdd(prefill){
   openId='add';addResults=[];addShowAll=false;
   openFull(`<div class="full-head"><button class="x" id="addClose" aria-label="إغلاق">✕</button><h2>إضافة مسلسل</h2><span style="width:40px"></span></div>
-  <div class="full-search"><input class="field wide" id="addQ" name="drama-search" placeholder="ابحث باسم المسلسل بالإنجليزي…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" dir="ltr" enterkeyhint="search" value="${esc(prefill||'')}"></div>
-  <div class="full-body"><div class="muted" id="addHint">اكتب اسم المسلسل وتطلع لك النتائج الكورية</div><div class="results" id="addRes"></div>
+  <div class="full-search"><input class="field wide" id="addQ" name="drama-search" placeholder="ابحث باسم المسلسل…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" dir="ltr" enterkeyhint="search" value="${esc(prefill||'')}"></div>
+  <div class="full-body"><div class="muted" id="addHint">اكتب اسم المسلسل وتطلع لك النتائج</div><div class="results" id="addRes"></div>
   <button class="link manual" id="addManual">ما لقيته؟ أضفه يدويًا ←</button></div>`);
   $('addClose').onclick=closeSheet;$('addManual').onclick=()=>addStep2({name:$('addQ').value.trim()});
   let q=$('addQ');q.oninput=()=>{clearTimeout(addTimer);addTimer=setTimeout(()=>searchTV(q.value),350)};
@@ -436,7 +436,7 @@ function openAdd(prefill){
 }
 async function searchTV(v){
   v=v.trim();let res=$('addRes');if(!res)return;
-  if(v.length<2){res.innerHTML='';$('addHint').textContent='اكتب اسم المسلسل وتطلع لك النتائج الكورية';return}
+  if(v.length<2){res.innerHTML='';$('addHint').textContent='اكتب اسم المسلسل وتطلع لك النتائج';return}
   $('addHint').textContent='جاري البحث…';
   try{let arr=await fetch('https://api.tvmaze.com/search/shows?q='+encodeURIComponent(v)).then(r=>r.json());
     if(!$('addQ')||$('addQ').value.trim()!==v)return;
@@ -444,16 +444,14 @@ async function searchTV(v){
   }catch(e){$('addHint').textContent='تعذّر البحث — تقدر تضيفه يدويًا تحت'}
 }
 function renderResults(){
-  let kr=addResults.filter(isKR),other=addResults.filter(sh=>!isKR(sh));
-  let list=addShowAll?kr.concat(other):kr;
-  $('addHint').textContent=kr.length?'النتائج الكورية — اختر المسلسل:':(other.length?'ما فيه نتائج كورية بهذا الاسم':'ما لقيت نتائج');
-  const row=(sh,i)=>{let y=(sh.premiered||'').slice(0,4),net=(sh.network&&sh.network.name)||(sh.webChannel&&sh.webChannel.name)||'',have=shows.find(x=>x.name.toLowerCase()===sh.name.toLowerCase());
-    return `<button class="res" data-i="${addResults.indexOf(sh)}">${sh.image?`<img src="${esc(sh.image.medium)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:'<span class="noimg">🎬</span>'}<span class="rt"><b dir="ltr">${esc(sh.name)}</b><small dir="ltr">${[y,esc(net)].filter(Boolean).join(' · ')}</small>${have?'<em>موجود بالقائمة ✓</em>':''}${!isKR(sh)?'<em class="nk">غير كوري</em>':''}</span></button>`};
-  $('addRes').innerHTML=list.map(row).join('')+(!addShowAll&&other.length?`<button class="link" id="showOther">عرض ${other.length} نتائج غير كورية</button>`:'');
+  let list=addResults;
+  $('addHint').textContent=list.length?'اختر المسلسل:':'ما لقيت نتائج';
+  const row=(sh,i)=>{let y=(sh.premiered||'').slice(0,4),ctry=(sh.network&&sh.network.country&&sh.network.country.name)||(sh.webChannel&&sh.webChannel.country&&sh.webChannel.country.name)||'',net=[(sh.network&&sh.network.name)||(sh.webChannel&&sh.webChannel.name)||'',ctry].filter(Boolean).join(' · '),have=shows.find(x=>x.name.toLowerCase()===sh.name.toLowerCase());
+    return `<button class="res" data-i="${addResults.indexOf(sh)}">${sh.image?`<img src="${esc(sh.image.medium)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:'<span class="noimg">🎬</span>'}<span class="rt"><b dir="ltr">${esc(sh.name)}</b><small dir="ltr">${[y,esc(net)].filter(Boolean).join(' · ')}</small>${have?'<em>موجود بالقائمة ✓</em>':''}</span></button>`};
+  $('addRes').innerHTML=list.map(row).join('');
   $('addRes').querySelectorAll('.res').forEach(b=>b.onclick=()=>{let sh=addResults[+b.dataset.i];haptic();
     let have=shows.find(x=>x.name.toLowerCase()===sh.name.toLowerCase());if(have){closeSheet();setTimeout(()=>openSheet(have.id),250);return}
     addStep2({name:sh.name,year:(sh.premiered||'').slice(0,4),poster:sh.image?sh.image.medium:'',net:(sh.network&&sh.network.name)||(sh.webChannel&&sh.webChannel.name)||''})});
-  let so=$('showOther');if(so)so.onclick=()=>{addShowAll=true;renderResults()};
 }
 function addStep2(d){
   let gs=[...new Set(shows.map(s=>s.genre))];
