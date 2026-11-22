@@ -32,7 +32,7 @@ input{-webkit-user-select:text;user-select:text}
 .who{display:flex;flex-direction:column;gap:10px;width:100%;max-width:340px;margin-top:8px}
 .who-btn{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;font-size:18px;font-weight:700;text-align:right;min-height:60px}
 .who-btn:active{transform:scale(.98);background:var(--field)}
-.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:17px;color:#0e1118;flex:none}
+.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:17px;line-height:1;padding-top:.12em;color:#0e1118;flex:none}
 .name-row{display:flex;gap:8px;width:100%;max-width:340px}
 .field{flex:1;background:var(--field);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:16px;min-height:50px;outline:none}
 .field:focus{border-color:var(--accent)}
@@ -85,10 +85,15 @@ main{max-width:1100px;margin:auto;padding:14px max(14px,var(--sar)) 0 max(14px,v
 /* Activity */
 .feed{display:flex;flex-direction:column;gap:8px}
 .day{font-size:13px;color:var(--sub);margin:14px 4px 2px;font-weight:700}
-.item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;text-align:right;width:100%}
-.item .txt{flex:1;font-size:14px;line-height:1.5}
-.item .txt b{direction:ltr;unicode-bidi:isolate}
-.item time{font-size:11px;color:var(--sub);white-space:nowrap}
+.item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 10px 8px 12px;text-align:right;width:100%}
+.item .thumb{width:44px;height:64px;flex:none;border-radius:8px;overflow:hidden;background:linear-gradient(145deg,#26344d,#111827);display:grid;place-items:center;font-size:18px}
+.item .thumb img{width:100%;height:100%;object-fit:cover}
+.item .txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px}
+.item .show{font-size:15px;font-weight:750;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .act{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px}
+.item .by-pill{background:color-mix(in srgb,var(--c) 22%,transparent);color:var(--c);border-radius:999px;padding:3px 10px;font-weight:700;line-height:1.4;white-space:nowrap}
+.item .st{color:var(--sub)}.item .st.seen{color:var(--seen)}.item .st.watching{color:var(--watch)}
+.item time{font-size:11px;color:var(--sub);white-space:nowrap;align-self:flex-start;margin-top:4px}
 
 /* Profile */
 .section{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:14px;overflow:hidden}
@@ -342,7 +347,8 @@ function render(){
   }else if(tab==='activity'){
     if(!data.log.length){v.innerHTML=`<div class="empty"><div class="big">📝</div>ما فيه نشاط للحين<br><span class="muted">أي تعديل منك أو من شريكك بيظهر هنا</span></div>`}
     else{let out='',last='';for(const l of data.log){let s=byId[l.id];if(!s)continue;let d=new Date(l.at).toLocaleDateString('ar',{weekday:'long',day:'numeric',month:'long'});if(d!==last){out+=`<div class="day">${d}</div>`;last=d}
-      out+=`<button class="item" data-id="${l.id}">${avatar(l.by)}<div class="txt"><strong>${esc(l.by)}</strong> ${VERB[l.s]||''} <b>${esc(s.name)}</b>${l.s==='added'?' ➕':''}</div><time>${ago(l.at)}</time></button>`}
+      let pu=posterOf(l.id),act={seen:'✓ أنهى المشاهدة',watching:'▶ بدأ المشاهدة',none:'◯ أزال العلامة',added:'➕ أضاف المسلسل'}[l.s]||'';
+      out+=`<button class="item" data-id="${l.id}"><span class="thumb">${pu?`<img src="${esc(pu)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:'🎬'}</span><div class="txt"><div class="show" dir="ltr">${esc(s.name)}</div><div class="act"><span class="by-pill" style="--c:${colorFor(l.by)}">${esc(l.by)}</span><span class="st ${l.s}">${act}</span></div></div><time>${ago(l.at)}</time></button>`}
       v.innerHTML=`<div class="feed">${out}</div>`;v.querySelectorAll('.item').forEach(i=>i.onclick=()=>openSheet(+i.dataset.id))}
   }else if(tab==='me'){
     let people=[...new Set([...(data.users||[]).map(u=>u.name),...data.log.map(l=>l.by)])].filter(Boolean);
