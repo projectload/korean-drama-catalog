@@ -208,7 +208,7 @@ button.sh-poster{padding:0;border:0;display:grid;place-items:center;color:var(--
 </div>
 
 <nav class="tabs hidden" id="tabs">
-  <button class="tab on" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>الكل<span class="n" id="n-home"></span></button>
+  <button class="tab on" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>الرئيسية<span class="n" id="n-home"></span></button>
   <button class="tab" data-tab="watching"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m10 8.5 5 3.5-5 3.5z" fill="currentColor"/></svg>أشاهده<span class="n" id="n-watching"></span></button>
   <button class="tab" data-tab="seen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16.5 9.5"/></svg>شاهدته<span class="n" id="n-seen"></span></button>
   <button class="tab" data-tab="activity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>النشاط</button>
@@ -326,14 +326,14 @@ function bindCards(root){root.querySelectorAll('.card').forEach(c=>c.onclick=()=
 function counts(){let c={seen:0,watching:0};shows.forEach(s=>{let v=st(s.id);if(c[v]!=null)c[v]++});return c}
 function render(){
   let c=counts();
-  $('n-home').textContent=shows.length-c.seen-c.watching||'';$('n-watching').textContent=c.watching||'';$('n-seen').textContent=c.seen||'';
+  $('n-home').textContent=shows.length-c.seen||'';$('n-watching').textContent=c.watching||'';$('n-seen').textContent=c.seen||'';
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.tab===tab));
   let browse=['home','watching','seen'].includes(tab);
   $('browseTools').classList.toggle('hidden',!browse);
-  $('title').textContent={home:'المسلسلات',watching:'أشاهده الآن',seen:'شاهدته',activity:'النشاط',me:'حسابي'}[tab];
+  $('title').textContent={home:'الرئيسية',watching:'أشاهده الآن',seen:'شاهدته',activity:'النشاط',me:'حسابي'}[tab];
   let v=$('view');
   if(tab==='home'){
-    let list=filtered(shows),pct=Math.round(c.seen/shows.length*100);
+    let list=filtered(query.trim()?shows:shows.filter(s=>st(s.id)!=='seen')),pct=Math.round(c.seen/shows.length*100);
     v.innerHTML=`<div class="summary"><div class="sum"><b>${c.seen}</b><span>شاهدناه</span></div><div class="sum"><b>${c.watching}</b><span>نشاهده</span></div><div class="sum"><b>${shows.length-c.seen-c.watching}</b><span>المتبقي</span></div></div><div class="progress"><i style="width:${pct}%"></i></div>`+
       (list.length?`<div class="grid">${list.map(cardHTML).join('')}</div>`:`<div class="empty"><div class="big">🔍</div>ما فيه نتائج${query?`<br><button class="primary" style="margin-top:12px" id="addFromSearch">➕ أضف "${esc(query)}"</button>`:''}</div>`);
   }else if(tab==='watching'||tab==='seen'){
