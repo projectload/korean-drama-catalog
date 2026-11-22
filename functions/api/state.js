@@ -3,28 +3,29 @@
 
 const VALID = new Set(['none', 'watching', 'seen']);
 
-const json = (data, status = 200) =>
+export const json = (data, status = 200) =>
   new Response(JSON.stringify(data), {
     status,
     headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' },
   });
 
-function authorized(request, env) {
+export function authorized(request, env) {
   if (!env.ACCESS_KEY) return true;
   return request.headers.get('x-key') === String(env.ACCESS_KEY);
 }
 
-function cleanName(v) {
+export function cleanName(v) {
   if (typeof v !== 'string') return null;
   const n = v.trim().replace(/\s+/g, ' ');
   return n.length >= 1 && n.length <= 30 ? n : null;
 }
 
-async function ensureSchema(db) {
+export async function ensureSchema(db) {
   await db.batch([
     db.prepare('CREATE TABLE IF NOT EXISTS states (id INTEGER PRIMARY KEY, state TEXT NOT NULL, updated_at INTEGER NOT NULL)'),
     db.prepare('CREATE TABLE IF NOT EXISTS log (rowid INTEGER PRIMARY KEY AUTOINCREMENT, id INTEGER NOT NULL, state TEXT NOT NULL, by TEXT NOT NULL, at INTEGER NOT NULL)'),
     db.prepare('CREATE TABLE IF NOT EXISTS users (name TEXT PRIMARY KEY, last_seen INTEGER NOT NULL)'),
+    db.prepare('CREATE TABLE IF NOT EXISTS shows (id INTEGER PRIMARY KEY, name TEXT NOT NULL, year INTEGER, genre TEXT, poster TEXT, added_by TEXT, added_at INTEGER NOT NULL)'),
   ]);
   try {
     await db.prepare('ALTER TABLE states ADD COLUMN updated_by TEXT').run();
@@ -33,11 +34,12 @@ async function ensureSchema(db) {
   }
 }
 
-async function snapshot(db) {
-  const [st, lg, us] = await db.batch([
+export async function snapshot(db) {
+  const [st, lg, us, sh] = await db.batch([
     db.prepare("SELECT id, state, updated_at, updated_by FROM states WHERE state != 'none' OR updated_by IS NOT NULL"),
     db.prepare('SELECT id, state, by, at FROM log ORDER BY rowid DESC LIMIT 150'),
     db.prepare('SELECT name, last_seen FROM users ORDER BY last_seen DESC'),
+    db.prepare('SELECT id, name, year, genre, poster, added_by, added_at FROM shows ORDER BY id'),
   ]);
   const states = {};
   for (const r of st.results) states[r.id] = { s: r.state, by: r.updated_by || null, at: r.updated_at };
@@ -45,6 +47,7 @@ async function snapshot(db) {
     states,
     log: lg.results.map((r) => ({ id: r.id, s: r.state, by: r.by, at: r.at })),
     users: us.results.map((r) => ({ name: r.name, at: r.last_seen })),
+    custom: sh.results.map((r) => ({ id: r.id, name: r.name, year: r.year, genre: r.genre, poster: r.poster, by: r.added_by, at: r.added_at })),
   };
 }
 
@@ -78,7 +81,7 @@ export async function onRequestPost({ request, env }) {
   for (const [rawId, raw] of entries) {
     const id = Number(rawId);
     const state = raw && typeof raw === 'object' ? raw.s : raw;
-    if (!Number.isInteger(id) || id < 1 || id > 10000 || !VALID.has(state)) continue;
+    if (!Number.isInteger(id) || id < 1 || id > 10000000 || !VALID.has(state)) continue;
     stmts.push(
       db.prepare(
         'INSERT INTO states (id, state, updated_at, updated_by) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(id) DO UPDATE SET state = excluded.state, updated_at = excluded.updated_at, updated_by = excluded.updated_by'
