@@ -9,13 +9,13 @@ const isKR = (sh) => {
   const c = (sh.network && sh.network.country && sh.network.country.code) || (sh.webChannel && sh.webChannel.country && sh.webChannel.country.code);
   return c === 'KR' || sh.language === 'Korean';
 };
-const getJSON = async (url) => {
+export const getJSON = async (url) => {
   const r = await fetch(url, { headers: UA, cf: { cacheTtl: 86400 } });
   if (r.status === 429 || r.status >= 500) throw new Error('retry');
   return r.ok ? r.json() : null;
 };
 
-async function tvSearch(name, year, minScore = 4) {
+export async function tvSearch(name, year, minScore = 4) {
   const arr = (await getJSON('https://api.tvmaze.com/search/shows?q=' + encodeURIComponent(name))) || [];
   let best = null, bs = 0;
   for (const { show: sh } of arr) {
