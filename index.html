@@ -18,7 +18,7 @@
 :root{color-scheme:dark;--bg:#0e1118;--bar:#141925;--card:#1b2130;--field:#242b3b;--line:#2f374a;--txt:#f4f6fb;--sub:#9aa6bb;--accent:#7de1be;--seen:#2bb58a;--watch:#f0b44c;--danger:#ff8f7a;--sat:env(safe-area-inset-top);--sab:env(safe-area-inset-bottom);--sal:env(safe-area-inset-left);--sar:env(safe-area-inset-right);--nav:64px}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:var(--bg)}
-body{margin:0;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;min-height:100dvh;overscroll-behavior-y:none;-webkit-user-select:none;user-select:none}
+body{margin:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;min-height:100dvh;overscroll-behavior-y:none;-webkit-user-select:none;user-select:none}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer;touch-action:manipulation;border:0;background:none}
 input{-webkit-user-select:text;user-select:text}
@@ -43,30 +43,36 @@ input{-webkit-user-select:text;user-select:text}
 
 /* ---------- App shell ---------- */
 #app{min-height:100dvh;padding-bottom:calc(var(--nav) + var(--sab) + 8px)}
-.topbar{position:sticky;top:0;z-index:10;background:#0e1118;padding:calc(10px + var(--sat)) max(16px,var(--sar)) 10px max(16px,var(--sal));border-bottom:1px solid #ffffff0d}
-.tb-row{display:flex;align-items:center;gap:10px;max-width:1100px;margin:auto}
-.tb-title{font-size:24px;font-weight:700;flex:1;color:#fff;line-height:1.5}
+.topbar{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,#1b2540 0%,#121829 100%);padding:calc(12px + var(--sat)) max(16px,var(--sar)) 12px max(16px,var(--sal));border-bottom:1px solid #ffffff12;box-shadow:0 8px 24px #00000055}
+.tb-row{display:flex;align-items:center;gap:12px;max-width:1100px;margin:auto}
+.tb-logo{width:46px;height:46px;border-radius:13px;flex:none;box-shadow:0 4px 14px #0007}
+.tb-titles{flex:1;min-width:0}
+.tb-sub{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:#b9c4d8;line-height:1.6}
+.tb-title{font-size:22px;font-weight:700;color:#fff;line-height:1.4}
 .tb-me{display:flex;align-items:center;gap:7px;background:var(--c,#7de1be);color:#0b1020;border:0;border-radius:999px;padding:7px 14px;font-size:15px;font-weight:700;line-height:1.6;white-space:nowrap}
 .tb-me span{line-height:1.6}
 .search-wrap{max-width:1100px;margin:10px auto 0;position:relative}
-.search-wrap input{width:100%;background:var(--field);border:1px solid transparent;border-radius:12px;padding:10px 40px 10px 14px;font-size:16px;min-height:44px;outline:none}
-.search-wrap input:focus{border-color:var(--line)}
+.search-wrap input{width:100%;background:#0e1424;color:#fff;-webkit-text-fill-color:#fff;border:1px solid #ffffff1a;border-radius:14px;padding:10px 42px 10px 14px;font-size:16px;min-height:46px;outline:none}
+.search-wrap input:focus{border-color:var(--accent)}
+.search-wrap input::placeholder{color:#8090ab;-webkit-text-fill-color:#8090ab}
 .search-wrap svg{position:absolute;right:12px;top:50%;transform:translateY(-50%);opacity:.6;pointer-events:none}
 .chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;max-width:1100px;margin:10px auto 0;padding-bottom:2px}
 .chips::-webkit-scrollbar{display:none}
-.chip{flex:none;background:var(--field);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px;white-space:nowrap;min-height:36px}
+.chip{flex:none;background:#0e1424;color:#d6deeb;border:1px solid #ffffff1a;border-radius:999px;padding:7px 15px;font-size:14px;font-weight:600;white-space:nowrap;min-height:38px;line-height:1.5}
 .chip.on{background:var(--accent);color:#0b1a14;border-color:var(--accent);font-weight:700}
-.sync{font-size:11px;color:var(--sub);max-width:1100px;margin:8px auto 0;display:flex;align-items:center;gap:6px}
+.sync{font-size:11px;color:#8f9bb3;display:inline-flex;align-items:center;gap:5px}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--seen)}
 .sync.err .dot{background:var(--danger)}.sync.busy .dot{background:var(--watch)}
 
 main{max-width:1100px;margin:auto;padding:14px max(14px,var(--sar)) 0 max(14px,var(--sal))}
-.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.sum{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}
-.sum b{display:block;font-size:22px;color:var(--accent)}
-.sum span{font-size:12px;color:var(--sub)}
-.progress{height:6px;background:var(--field);border-radius:99px;overflow:hidden;margin:-4px 0 16px}
-.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--seen),var(--accent));border-radius:99px;transition:width .4s}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.sum{--k:#9fb0d0;background:linear-gradient(160deg,color-mix(in srgb,var(--k) 22%,#161d2e),#161d2e 75%);border:1px solid color-mix(in srgb,var(--k) 35%,transparent);border-radius:16px;padding:12px 8px;text-align:center}
+.sum.s-seen{--k:#2fd39a}.sum.s-watch{--k:#f5b942}.sum.s-left{--k:#8fb4ff}
+.sum b{display:block;font-size:26px;color:var(--k);line-height:1.3}
+.sum span{font-size:13px;color:#c9d2e3}
+.prog-l{display:flex;justify-content:space-between;font-size:12px;color:#b9c4d8;margin:0 2px 6px}
+.progress{height:8px;background:#1c2436;border-radius:99px;overflow:hidden;margin:0 0 18px}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,#2fd39a,#7de1be);border-radius:99px;transition:width .4s}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
 .card{position:relative;border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line);text-align:right;padding:0;display:flex;flex-direction:column;content-visibility:auto;contain-intrinsic-size:auto 330px}
@@ -227,7 +233,8 @@ label.blk{margin-bottom:10px}
 <div id="app" class="hidden">
   <header class="topbar">
     <div class="tb-row">
-      <div class="tb-title" id="title">المسلسلات</div>
+      <img class="tb-logo" src="icon-192.png" alt="">
+      <div class="tb-titles"><div class="tb-title" id="title">مسلسلاتي</div><div class="tb-sub"><span id="greet"></span><span class="sync" id="sync"><span class="dot"></span><span id="syncTxt">جاري التحميل…</span></span></div></div>
       <button class="tb-me" id="meBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span id="meName"></span></button>
     </div>
     <div id="browseTools">
@@ -237,7 +244,6 @@ label.blk{margin-bottom:10px}
       </div>
       <div class="chips" id="chips"></div>
     </div>
-    <div class="sync" id="sync"><span class="dot"></span><span id="syncTxt">جاري التحميل…</span></div>
   </header>
   <main id="view"></main>
 </div>
@@ -257,7 +263,7 @@ label.blk{margin-bottom:10px}
 <input type="file" id="file" accept=".json" hidden>
 
 <script>
-const BUILD='1795383550';
+const BUILD='1795383661';
 const BUILTIN=[{"id": 1, "name": "Mouse", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 2, "name": "Beyond Evil", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 3, "name": "Flower of Evil", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 4, "name": "Through the Darkness", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 5, "name": "Blind", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 6, "name": "Nine Puzzles", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 7, "name": "Black Out", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 8, "name": "The Killing Vote", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 9, "name": "Tell Me What You Saw", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 10, "name": "Queen Mantis", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 11, "name": "The Worst of Evil", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 12, "name": "My Name", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 13, "name": "Bloodhounds", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 14, "name": "Mercy for None", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 15, "name": "Gangnam B-Side", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 16, "name": "Vincenzo", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 17, "name": "Narco-Saints", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 18, "name": "A Shop for Killers", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 19, "name": "Trigger", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 20, "name": "Low Life", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 21, "name": "Taxi Driver", "year": 2021, "genre": "انتقام ومؤامرات"}, {"id": 22, "name": "The Manipulated", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 23, "name": "Big Mouth", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 24, "name": "The Glory", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 25, "name": "Vigilante", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 26, "name": "Revenge of Others", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 27, "name": "Karma", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 28, "name": "Buried Hearts", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 29, "name": "The Veil", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 30, "name": "Weak Hero Class 1", "year": 2022, "genre": "أكشن ومخابرات"}, {"id": 31, "name": "Weak Hero Class 2", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 32, "name": "Study Group", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 33, "name": "Moving", "year": 2023, "genre": "أكشن ومخابرات"}, {"id": 34, "name": "Good Boy", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 35, "name": "A Killer Paradox", "year": 2024, "genre": "غموض نفسي"}, {"id": 36, "name": "The Frog", "year": 2024, "genre": "غموض نفسي"}, {"id": 37, "name": "The Price of Confession", "year": 2025, "genre": "غموض نفسي"}, {"id": 38, "name": "The Hunter with a Scalpel", "year": 2025, "genre": "غموض نفسي"}, {"id": 39, "name": "Hyper Knife", "year": 2025, "genre": "غموض نفسي"}, {"id": 40, "name": "As You Stood By", "year": 2025, "genre": "غموض نفسي"}, {"id": 41, "name": "Nobody Knows", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 42, "name": "Stranger 2", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 43, "name": "The Good Detective", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 44, "name": "Extracurricular", "year": 2020, "genre": "عصابات وأكشن"}, {"id": 45, "name": "Train", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 46, "name": "Kairos", "year": 2020, "genre": "غموض نفسي"}, {"id": 47, "name": "Awaken", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 48, "name": "Memorist", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 49, "name": "365: Repeat the Year", "year": 2020, "genre": "غموض نفسي"}, {"id": 50, "name": "Team Bulldog: Off-duty Investigation", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 51, "name": "Chimera", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 52, "name": "Hometown", "year": 2021, "genre": "غموض نفسي"}, {"id": 53, "name": "One Ordinary Day", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 54, "name": "Bad and Crazy", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 55, "name": "D.P.", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 56, "name": "Inspector Koo", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 57, "name": "The King of Pigs", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 58, "name": "A Model Family", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 59, "name": "Insider", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 60, "name": "Military Prosecutor Doberman", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 61, "name": "Grid", "year": 2022, "genre": "غموض نفسي"}, {"id": 62, "name": "Connect", "year": 2022, "genre": "غموض نفسي"}, {"id": 63, "name": "Bargain", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 64, "name": "Decoy", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 65, "name": "Longing for You", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 66, "name": "The Kidnapping Day", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 67, "name": "Evilive", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 68, "name": "The Deal", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 69, "name": "Payback: Money and Power", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 70, "name": "The Escape of the Seven", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 71, "name": "Connection", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 72, "name": "Crash", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 73, "name": "Flex X Cop", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 74, "name": "The Bequeathed", "year": 2024, "genre": "غموض نفسي"}, {"id": 75, "name": "Pyramid Game", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 76, "name": "The Whirlwind", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 77, "name": "The Tyrant", "year": 2024, "genre": "أكشن ومخابرات"}, {"id": 78, "name": "No Way Out: The Roulette", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 79, "name": "Doubt", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 80, "name": "The Judge from Hell", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 81, "name": "Unmasked", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 82, "name": "The Defects", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 83, "name": "Tempest", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 84, "name": "Made in Korea", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 85, "name": "No Mercy", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 86, "name": "Walking on Thin Ice", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 87, "name": "Villains", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 88, "name": "Shark: The Storm", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 89, "name": "Undercover High School", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 90, "name": "Friendly Rivalry", "year": 2025, "genre": "غموض نفسي"}];
 let shows=BUILTIN.slice(),byId={};
 function rebuild(){let hid=new Set((data.hidden||[]).map(h=>h.id));shows=BUILTIN.filter(s=>!hid.has(s.id)).concat((data.custom||[]).map(c=>({id:c.id,name:c.name,year:c.year||'',genre:c.genre||'أخرى',custom:true,by:c.by,at:c.at,poster:c.poster})));byId=Object.fromEntries(shows.map(s=>[s.id,s]))}
@@ -365,12 +371,13 @@ function render(){
   $('n-home').textContent=shows.length-c.seen||'';$('n-watching').textContent=c.watching||'';$('n-seen').textContent=c.seen||'';
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.tab===tab));
   let browse=['home','watching','seen'].includes(tab);
+  $('greet').textContent={home:'هلا '+ME+' 👋',watching:c.watching+' مسلسل قيد المشاهدة',seen:c.seen+' مسلسل خلصتوه',activity:'آخر التعديلات',me:'إعداداتك'}[tab]||'';
   $('browseTools').classList.toggle('hidden',!browse);
-  $('title').textContent={home:'الرئيسية',watching:'أشاهده الآن',seen:'شاهدته',activity:'النشاط',me:'حسابي'}[tab];
+  $('title').textContent={home:'مسلسلاتي',watching:'أشاهده الآن',seen:'شاهدته',activity:'النشاط',me:'حسابي'}[tab];
   let v=$('view');
   if(tab==='home'){
     let list=filtered(query.trim()?shows:shows.filter(s=>st(s.id)!=='seen')),pct=Math.round(c.seen/shows.length*100);
-    v.innerHTML=`<div class="summary"><div class="sum"><b>${c.seen}</b><span>شاهدناه</span></div><div class="sum"><b>${c.watching}</b><span>نشاهده</span></div><div class="sum"><b>${shows.length-c.seen-c.watching}</b><span>المتبقي</span></div></div><div class="progress"><i style="width:${pct}%"></i></div>`+
+    v.innerHTML=`<div class="summary"><div class="sum s-seen"><b>${c.seen}</b><span>✓ شاهدناه</span></div><div class="sum s-watch"><b>${c.watching}</b><span>▶ نشاهده</span></div><div class="sum s-left"><b>${shows.length-c.seen-c.watching}</b><span>المتبقي</span></div></div><div class="prog-l"><span>التقدّم</span><span>${pct}% من ${shows.length}</span></div><div class="progress"><i style="width:${pct}%"></i></div>`+
       (list.length?`<div class="grid">${list.map(cardHTML).join('')}</div>`:`<div class="empty"><div class="big">🔍</div>ما فيه نتائج${query?`<br><button class="primary" style="margin-top:12px" id="addFromSearch">➕ أضف "${esc(query)}"</button>`:''}</div>`);
   }else if(tab==='watching'||tab==='seen'){
     let list=filtered(shows.filter(s=>st(s.id)===tab)).sort((a,b)=>(data.states[b.id].at||0)-(data.states[a.id].at||0));
