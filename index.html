@@ -145,7 +145,12 @@ nav.tabs{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#141925f2;
 <section id="noaccess" class="screen hidden">
   <img class="logo" src="icon-192.png" alt="">
   <h1>🔒 رابط خاص</h1>
-  <p>هذا التطبيق خاص. افتحه من الرابط اللي وصلك، أو اطلب الرابط من صاحب التطبيق.</p>
+  <p>هذا التطبيق خاص. ألصق الرابط الخاص اللي وصلك هنا مرة وحدة بس.</p>
+  <form class="name-row" id="keyForm" style="flex-direction:column">
+    <input class="field" id="keyInput" placeholder="ألصق الرابط هنا" autocomplete="off" dir="ltr">
+    <button class="primary" type="submit">فتح</button>
+  </form>
+  <div class="muted" id="keyErr"></div>
 </section>
 
 <!-- Login -->
@@ -205,7 +210,7 @@ const VERB={none:'أزال العلامة عن',watching:'بدأ يشاهد',see
 const COLORS=['#7de1be','#f0b44c','#8bc5ff','#ff9db5','#c4a5ff','#ffd27a'];
 
 /* ---------- Access key (from #k=... link) ---------- */
-(function(){let m=location.hash.match(/k=([^&]+)/);if(m){ls.set(LS.key,decodeURIComponent(m[1]));history.replaceState(null,'',location.pathname)}})();
+(function(){let m=location.hash.match(/k=([^&]+)/);if(m){ls.set(LS.key,decodeURIComponent(m[1]))}else{let k=ls.get(LS.key,'');if(k)history.replaceState(null,'',location.pathname+'#k='+encodeURIComponent(k))}})();
 window.addEventListener('hashchange',()=>{if(/k=/.test(location.hash))location.reload()});
 let KEY=ls.get(LS.key,'');
 let ME=ls.get(LS.me,'');
@@ -259,6 +264,9 @@ function showLogin(){
   showScreen('login');
 }
 function login(n){n=(n||'').trim().replace(/\s+/g,' ').slice(0,30);if(!n)return;ME=n;ls.set(LS.me,n);boot();pull()}
+$('keyForm').onsubmit=async e=>{e.preventDefault();let v=$('keyInput').value.trim(),m=v.match(/k=([^&\s]+)/);let k=m?decodeURIComponent(m[1]):v;if(!k)return;
+  KEY=k;try{let r=await fetch('/api/state',{headers:{'x-key':k},cache:'no-store'});if(r.status===401){$('keyErr').textContent='الرابط غير صحيح';return}}catch(err){}
+  ls.set(LS.key,k);history.replaceState(null,'',location.pathname+'#k='+encodeURIComponent(k));location.reload()};
 $('nameForm').onsubmit=e=>{e.preventDefault();login($('nameInput').value)};
 
 function boot(){
