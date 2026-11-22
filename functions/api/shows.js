@@ -32,15 +32,33 @@ export async function onRequestPost({ request, env }) {
 export async function onRequestDelete({ request, env }) {
   if (!env.DB) return json({ error: 'no_db' }, 500);
   if (!authorized(request, env)) return json({ error: 'key' }, 401);
-  const id = Number(new URL(request.url).searchParams.get('id'));
-  if (!Number.isInteger(id) || id <= 1000) return json({ error: 'bad_id' }, 400);
+  const q = new URL(request.url).searchParams;
+  const id = Number(q.get('id'));
+  const by = cleanName(decodeURIComponent(request.headers.get('x-user') || '')) || null;
+  if (!Number.isInteger(id) || id < 1) return json({ error: 'bad_id' }, 400);
   const db = env.DB;
   await ensureSchema(db);
-  await db.batch([
-    db.prepare('DELETE FROM shows WHERE id = ?1').bind(id),
-    db.prepare('DELETE FROM states WHERE id = ?1').bind(id),
-    db.prepare('DELETE FROM log WHERE id = ?1').bind(id),
-    db.prepare('DELETE FROM posters WHERE id = ?1').bind(id),
-  ]);
+  if (id <= 1000) {
+    // Built-in show: hide it (can be restored). Keep its watch state so a restore brings it back as it was.
+    await db.prepare('INSERT INTO hidden (id, by, at) VALUES (?1, ?2, ?3) ON CONFLICT(id) DO UPDATE SET by = excluded.by, at = excluded.at').bind(id, by, Date.now()).run();
+  } else {
+    await db.batch([
+      db.prepare('DELETE FROM shows WHERE id = ?1').bind(id),
+      db.prepare('DELETE FROM states WHERE id = ?1').bind(id),
+      db.prepare('DELETE FROM log WHERE id = ?1').bind(id),
+      db.prepare('DELETE FROM posters WHERE id = ?1').bind(id),
+    ]);
+  }
   return json({ ok: true, ...(await snapshot(db)) });
+}
+
+// PUT /api/shows?restore&id=N  -> un-hide a built-in show
+export async function onRequestPut({ request, env }) {
+  if (!env.DB) return json({ error: 'no_db' }, 500);
+  if (!authorized(request, env)) return json({ error: 'key' }, 401);
+  const id = Number(new URL(request.url).searchParams.get('id'));
+  if (!Number.isInteger(id) || id < 1 || id > 1000) return json({ error: 'bad_id' }, 400);
+  await ensureSchema(env.DB);
+  await env.DB.prepare('DELETE FROM hidden WHERE id = ?1').bind(id).run();
+  return json({ ok: true, ...(await snapshot(env.DB)) });
 }
