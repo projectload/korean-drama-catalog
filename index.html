@@ -214,6 +214,12 @@ label.blk{margin-bottom:10px}
 .dm{font-size:10px;color:var(--sub);text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.6}
 .rate{position:absolute;top:5px;right:5px;z-index:1;background:#0b1020d9;color:#ffd166;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:700;line-height:1.6;direction:ltr}
 .src{font-size:11px;color:#7f8aa0;margin-inline-start:auto;align-self:center}
+.fav{position:absolute;top:28px;left:6px;z-index:1;font-size:13px;filter:drop-shadow(0 1px 3px #000)}
+.sh-tr{display:flex;align-items:flex-start;gap:8px}.sh-tr .sh-title{flex:1}
+.heart{flex:none;width:40px;height:40px;border-radius:50%;background:var(--field);font-size:20px;line-height:1}
+.heart.on{background:#ff5d7a2e}
+.heart:active{transform:scale(.88)}
+.fav-who{font-size:12px;color:#ff8fa3;margin:-2px 0 4px}
 .epbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:4px 0 10px}
 .epbox:empty{display:none}
 .ssel{flex:none;width:auto;min-height:36px;padding:4px 30px 4px 10px;font-size:14px}
@@ -342,7 +348,7 @@ label.blk{margin-bottom:10px}
 <input type="file" id="file" accept=".json" hidden>
 
 <script>
-const BUILD='1795466555';
+const BUILD='1795466980';
 const BUILTIN=[{"id": 1, "name": "Mouse", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 2, "name": "Beyond Evil", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 3, "name": "Flower of Evil", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 4, "name": "Through the Darkness", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 5, "name": "Blind", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 6, "name": "Nine Puzzles", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 7, "name": "Black Out", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 8, "name": "The Killing Vote", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 9, "name": "Tell Me What You Saw", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 10, "name": "Queen Mantis", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 11, "name": "The Worst of Evil", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 12, "name": "My Name", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 13, "name": "Bloodhounds", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 14, "name": "Mercy for None", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 15, "name": "Gangnam B-Side", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 16, "name": "Vincenzo", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 17, "name": "Narco-Saints", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 18, "name": "A Shop for Killers", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 19, "name": "Trigger", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 20, "name": "Low Life", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 21, "name": "Taxi Driver", "year": 2021, "genre": "انتقام ومؤامرات"}, {"id": 22, "name": "The Manipulated", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 23, "name": "Big Mouth", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 24, "name": "The Glory", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 25, "name": "Vigilante", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 26, "name": "Revenge of Others", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 27, "name": "Karma", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 28, "name": "Buried Hearts", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 29, "name": "The Veil", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 30, "name": "Weak Hero Class 1", "year": 2022, "genre": "أكشن ومخابرات"}, {"id": 31, "name": "Weak Hero Class 2", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 32, "name": "Study Group", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 33, "name": "Moving", "year": 2023, "genre": "أكشن ومخابرات"}, {"id": 34, "name": "Good Boy", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 35, "name": "A Killer Paradox", "year": 2024, "genre": "غموض نفسي"}, {"id": 36, "name": "The Frog", "year": 2024, "genre": "غموض نفسي"}, {"id": 37, "name": "The Price of Confession", "year": 2025, "genre": "غموض نفسي"}, {"id": 38, "name": "The Hunter with a Scalpel", "year": 2025, "genre": "غموض نفسي"}, {"id": 39, "name": "Hyper Knife", "year": 2025, "genre": "غموض نفسي"}, {"id": 40, "name": "As You Stood By", "year": 2025, "genre": "غموض نفسي"}, {"id": 41, "name": "Nobody Knows", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 42, "name": "Stranger 2", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 43, "name": "The Good Detective", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 44, "name": "Extracurricular", "year": 2020, "genre": "عصابات وأكشن"}, {"id": 45, "name": "Train", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 46, "name": "Kairos", "year": 2020, "genre": "غموض نفسي"}, {"id": 47, "name": "Awaken", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 48, "name": "Memorist", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 49, "name": "365: Repeat the Year", "year": 2020, "genre": "غموض نفسي"}, {"id": 50, "name": "Team Bulldog: Off-duty Investigation", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 51, "name": "Chimera", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 52, "name": "Hometown", "year": 2021, "genre": "غموض نفسي"}, {"id": 53, "name": "One Ordinary Day", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 54, "name": "Bad and Crazy", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 55, "name": "D.P.", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 56, "name": "Inspector Koo", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 57, "name": "The King of Pigs", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 58, "name": "A Model Family", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 59, "name": "Insider", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 60, "name": "Military Prosecutor Doberman", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 61, "name": "Grid", "year": 2022, "genre": "غموض نفسي"}, {"id": 62, "name": "Connect", "year": 2022, "genre": "غموض نفسي"}, {"id": 63, "name": "Bargain", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 64, "name": "Decoy", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 65, "name": "Longing for You", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 66, "name": "The Kidnapping Day", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 67, "name": "Evilive", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 68, "name": "The Deal", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 69, "name": "Payback: Money and Power", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 70, "name": "The Escape of the Seven", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 71, "name": "Connection", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 72, "name": "Crash", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 73, "name": "Flex X Cop", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 74, "name": "The Bequeathed", "year": 2024, "genre": "غموض نفسي"}, {"id": 75, "name": "Pyramid Game", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 76, "name": "The Whirlwind", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 77, "name": "The Tyrant", "year": 2024, "genre": "أكشن ومخابرات"}, {"id": 78, "name": "No Way Out: The Roulette", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 79, "name": "Doubt", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 80, "name": "The Judge from Hell", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 81, "name": "Unmasked", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 82, "name": "The Defects", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 83, "name": "Tempest", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 84, "name": "Made in Korea", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 85, "name": "No Mercy", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 86, "name": "Walking on Thin Ice", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 87, "name": "Villains", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 88, "name": "Shark: The Storm", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 89, "name": "Undercover High School", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 90, "name": "Friendly Rivalry", "year": 2025, "genre": "غموض نفسي"}];
 let shows=BUILTIN.slice(),byId={};
 function rebuild(){let hid=new Set((data.hidden||[]).map(h=>h.id));shows=BUILTIN.filter(s=>!hid.has(s.id)).concat((data.custom||[]).map(c=>({id:c.id,name:c.name,year:c.year||'',genre:c.genre||'أخرى',custom:true,by:c.by,at:c.at,poster:c.poster})));byId=Object.fromEntries(shows.map(s=>[s.id,s]))}
@@ -382,7 +388,7 @@ async function api(method,body,path){
   return res.json();
 }
 function syncState(cls,txt){let el=$('sync');el.className='sync '+(cls||'');$('syncTxt').textContent=txt}
-function apply(d){let before=JSON.stringify([data.custom||[],data.hidden||[]]);data={states:d.states||{},log:d.log||[],users:d.users||[],custom:d.custom||[],posters:d.posters||{},hidden:d.hidden||[],eps:d.eps||{},ratings:d.ratings||{}};ls.set(LS.cache,data);rebuild();if(JSON.stringify([data.custom,data.hidden])!==before)renderChips()}
+function apply(d){let before=JSON.stringify([data.custom||[],data.hidden||[]]);data={states:d.states||{},log:d.log||[],users:d.users||[],custom:d.custom||[],posters:d.posters||{},hidden:d.hidden||[],eps:d.eps||{},ratings:d.ratings||{},favs:d.favs||{}};ls.set(LS.cache,data);rebuild();if(JSON.stringify([data.custom,data.hidden])!==before)renderChips()}
 async function pull(first){
   if(pending)return;
   try{let d=await api('GET');if(pending)return;apply(d);if(first)boot();else{render();refreshSheet()}syncState('','متزامن · '+new Date().toLocaleTimeString('ar',{hour:'numeric',minute:'2-digit'}))}
@@ -458,14 +464,14 @@ function boot(){
 function renderChips(){
   let genres=[...new Set(shows.map(s=>s.genre))];
   let years=[...new Set(shows.map(s=>s.year).filter(Boolean))].sort((a,b)=>b-a);
-  let opts=[['all','الكل'],['left','لم أشاهده'],...(shows.some(s=>s.custom)?[['added','أضفناه']]:[]),...genres.map(g=>['g:'+g,g]),...years.map(y=>['y:'+y,String(y)])];
+  let opts=[['all','الكل'],['fav','❤️ المفضلة'],['left','لم أشاهده'],...(shows.some(s=>s.custom)?[['added','أضفناه']]:[]),...genres.map(g=>['g:'+g,g]),...years.map(y=>['y:'+y,String(y)])];
   $('chips').innerHTML=opts.map(([v,t])=>`<button class="chip ${genre===v?'on':''}" data-v="${esc(v)}">${esc(t)}</button>`).join('');
   $('chips').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{genre=c.dataset.v;renderChips();render()});
 }
 function filtered(list){
   let q=query.trim().toLowerCase();
   return list.filter(s=>(!q||s.name.toLowerCase().includes(q)||s.genre.includes(q)||String(s.year)===q)&&
-    (genre==='all'||(genre==='left'&&st(s.id)==='none')||(genre==='added'&&s.custom)||(genre.startsWith('g:')&&s.genre===genre.slice(2))||(genre.startsWith('y:')&&String(s.year)===genre.slice(2))));
+    (genre==='all'||(genre==='fav'&&favOf(s.id).length)||(genre==='left'&&st(s.id)==='none')||(genre==='added'&&s.custom)||(genre.startsWith('g:')&&s.genre===genre.slice(2))||(genre.startsWith('y:')&&String(s.year)===genre.slice(2))));
 }
 function cardHTML(s){
   let x=data.states[s.id],state=st(s.id);
@@ -475,7 +481,7 @@ function cardHTML(s){
   let e=(data.eps||{})[s.id]?curEp(s.id):null,epHTML='';
   if(e&&state==='watching'&&e.ep>0){let pc=e.total?Math.min(100,Math.round(e.ep/e.total*100)):0;epHTML=`<span class="epbadge">ح${e.ep}${e.total?'/'+e.total:''}</span>${e.total?`<span class="epbar"><i style="width:${pc}%"></i></span>`:''}`}
   if(state==='watching'&&tab==='watching')epHTML+=`<span class="plus1" role="button" dir="ltr" data-plus="${s.id}">+1</span>`;
-  return `<button class="card ${state==='none'?'':state}" data-id="${s.id}"><div class="poster">${badge}${(r=>r?`<span class="rate">⭐ ${r}</span>`:'')(ratingOf(s.id))}<span>🎬<br>${esc(s.name)}</span>${img}${epHTML}</div><div class="info"><div class="t">${esc(s.name)}</div><div class="m">${s.year?s.year+' · ':''}${esc(s.genre)}${s.custom?' · ➕':''}</div>${by}</div></button>`;
+  return `<button class="card ${state==='none'?'':state}" data-id="${s.id}"><div class="poster">${badge}${favOf(s.id).length?'<span class="fav">❤️</span>':''}${(r=>r?`<span class="rate">⭐ ${r}</span>`:'')(ratingOf(s.id))}<span>🎬<br>${esc(s.name)}</span>${img}${epHTML}</div><div class="info"><div class="t">${esc(s.name)}</div><div class="m">${s.year?s.year+' · ':''}${esc(s.genre)}${s.custom?' · ➕':''}</div>${by}</div></button>`;
 }
 function bindCards(root){root.querySelectorAll('.card').forEach(c=>c.onclick=e=>{let p=e.target.closest('.plus1');if(p){e.stopPropagation();quickPlus(+p.dataset.plus);return}openSheet(+c.dataset.id)})}
 function counts(){let c={seen:0,watching:0};shows.forEach(s=>{let v=st(s.id);if(c[v]!=null)c[v]++});return c}
@@ -489,7 +495,7 @@ function render(){
   $('title').textContent={home:'مسلسلاتي',watching:'أشاهده الآن',seen:'شاهدته',activity:'النشاط',me:'حسابي'}[tab];
   let v=$('view');
   if(tab==='home'){
-    let list=filtered(query.trim()?shows:shows.filter(s=>st(s.id)!=='seen')),pct=Math.round(c.seen/shows.length*100);
+    let list=filtered(query.trim()||genre==='fav'?shows:shows.filter(s=>st(s.id)!=='seen')),pct=Math.round(c.seen/shows.length*100);
     v.innerHTML=`<div class="summary"><div class="sum s-seen"><b>${c.seen}</b><span>✓ شاهدناه</span></div><div class="sum s-watch"><b>${c.watching}</b><span>▶ نشاهده</span></div><div class="sum s-left"><b>${shows.length-c.seen-c.watching}</b><span>المتبقي</span></div></div><div class="prog-l"><span>التقدّم</span><span>${pct}% من ${shows.length}</span></div><div class="progress"><i style="width:${pct}%"></i></div>`+(!query.trim()&&genre==='all'?discoverHTML():'')+
       (list.length?`<div class="grid">${list.map(cardHTML).join('')}</div>`:`<div class="empty"><div class="big">🔍</div>ما فيه نتائج${query?`<br><button class="primary" style="margin-top:12px" id="addFromSearch">➕ أضف "${esc(query)}"</button>`:''}</div>`);
   }else if(tab==='watching'||tab==='seen'){
@@ -542,7 +548,8 @@ function refreshSheet(){
   let showEp=state==='watching'||((data.eps||{})[s.id]&&(data.eps||{})[s.id].ep>0);
   $('sheet').innerHTML=`<div class="grab"></div>
   <div class="sh-head c"><button class="sh-poster" id="chgPoster" aria-label="تغيير البوستر">${posterOf(s.id)?`<img src="${esc(posterOf(s.id))}" alt="" referrerpolicy="no-referrer">`:'<span class="noposter">🖼</span>'}</button>
-  <div style="flex:1;min-width:0"><div class="sh-title">${esc(s.name)}</div>
+  <div style="flex:1;min-width:0"><div class="sh-tr"><div class="sh-title">${esc(s.name)}</div><button class="heart ${favOf(s.id).includes(ME)?'on':''}" id="favBtn" aria-label="المفضلة">${favOf(s.id).includes(ME)?'❤️':'🤍'}</button></div>
+  ${favOf(s.id).length?`<div class="fav-who">❤️ ${favOf(s.id).map(esc).join(' و ')}</div>`:''}
   <div class="sh-meta">${s.year?s.year+' · ':''}${esc(s.genre)}<span id="shExtra"></span></div>
   ${x&&x.by?`<div class="sh-last2">${esc(x.by)} · ${ago(x.at)}</div>`:''}</div></div>
   <div class="seg">${['none','watching','seen'].map(k=>`<button class="sbtn ${state===k?'on':''}" data-s="${k}">${{none:'◯',watching:'▶',seen:'✓'}[k]} ${LABEL[k]}</button>`).join('')}</div>
@@ -568,6 +575,7 @@ function refreshSheet(){
     ['where','more'].forEach(n=>{let el=$('p-'+n);if(n===k){el.classList.toggle('hidden');b.classList.toggle('on',!el.classList.contains('hidden'))}else{el.classList.add('hidden')}});
     $('sheet').querySelectorAll('.act').forEach(o=>{if(o!==b&&o.dataset.p!=='eps')o.classList.remove('on')})});
   $('chgPoster').onclick=$('chgPoster2').onclick=()=>openPosterPicker(openId);
+  $('favBtn').onclick=()=>toggleFav(s.id);
   loadSummary(s);paintEps(s);loadEpInfo(s);
   let del=$('delShow');if(del)del.onclick=async()=>{if(!del.dataset.sure){del.dataset.sure=1;del.textContent='اضغط مرة ثانية للتأكيد';return}
     let id=openId,builtin=id<=1000;closeSheet();try{let d=await api('DELETE',null,'/api/shows?id='+id);apply(d);render();toast(builtin?'تم الحذف — تقدر ترجعه من حسابي ← المحذوفات':'تم حذف المسلسل')}catch(e){toast('تعذّر الحذف — تحقق من الاتصال')}};
@@ -723,6 +731,15 @@ function openTmdb(){
       $('tMsg').textContent=d.error==='invalid'?'TMDB رفض المفتاح — تأكد إنه API Key مو Read Access Token':'تعذّر الحفظ'}catch(e){$('tMsg').textContent='تعذّر الاتصال'}
     b.disabled=false;b.textContent='حفظ وتفعيل'};
   setTimeout(()=>$('tKey').focus(),250);
+}
+
+/* ---------- Favourites ---------- */
+const favOf=id=>(data.favs||{})[id]||[];
+async function toggleFav(id){
+  haptic();let on=!favOf(id).includes(ME);data.favs=data.favs||{};
+  data.favs[id]=on?favOf(id).concat(ME):favOf(id).filter(n=>n!==ME);if(!data.favs[id].length)delete data.favs[id];
+  ls.set(LS.cache,data);render();refreshSheet();toast(on?'❤️ انضاف للمفضلة':'انشال من المفضلة');
+  pending++;try{let d=await api('POST',{id,by:ME,on},'/api/fav');pending--;if(!pending){apply(d);render();refreshSheet()}}catch(e){pending--;toast('تعذّر الحفظ — تحقق من الاتصال')}
 }
 
 /* ---------- Summary ---------- */

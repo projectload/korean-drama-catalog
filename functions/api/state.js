@@ -25,6 +25,7 @@ export async function ensureSchema(db) {
     db.prepare('CREATE TABLE IF NOT EXISTS states (id INTEGER PRIMARY KEY, state TEXT NOT NULL, updated_at INTEGER NOT NULL)'),
     db.prepare('CREATE TABLE IF NOT EXISTS log (rowid INTEGER PRIMARY KEY AUTOINCREMENT, id INTEGER NOT NULL, state TEXT NOT NULL, by TEXT NOT NULL, at INTEGER NOT NULL)'),
     db.prepare('CREATE TABLE IF NOT EXISTS users (name TEXT PRIMARY KEY, last_seen INTEGER NOT NULL)'),
+    db.prepare('CREATE TABLE IF NOT EXISTS favs (id INTEGER NOT NULL, by TEXT NOT NULL, at INTEGER NOT NULL, PRIMARY KEY (id, by))'),
     db.prepare('CREATE TABLE IF NOT EXISTS config (k TEXT PRIMARY KEY, v TEXT)'),
     db.prepare('CREATE TABLE IF NOT EXISTS attempts (ip TEXT PRIMARY KEY, n INTEGER NOT NULL, until INTEGER NOT NULL)'),
     db.prepare('CREATE TABLE IF NOT EXISTS eps (id INTEGER PRIMARY KEY, season INTEGER NOT NULL DEFAULT 1, ep INTEGER NOT NULL DEFAULT 0, total INTEGER, by TEXT, at INTEGER NOT NULL)'),
@@ -42,7 +43,7 @@ export async function ensureSchema(db) {
 }
 
 export async function snapshot(db) {
-  const [st, lg, us, sh, po, hd, ep, rt] = await db.batch([
+  const [st, lg, us, sh, po, hd, ep, rt, fv] = await db.batch([
     db.prepare("SELECT id, state, updated_at, updated_by FROM states WHERE state != 'none' OR updated_by IS NOT NULL"),
     db.prepare('SELECT id, state, by, at FROM log ORDER BY rowid DESC LIMIT 150'),
     db.prepare('SELECT name, last_seen FROM users ORDER BY last_seen DESC'),
@@ -51,7 +52,10 @@ export async function snapshot(db) {
     db.prepare('SELECT id, by, at FROM hidden ORDER BY at DESC'),
     db.prepare('SELECT id, season, ep, total, by, at FROM eps'),
     db.prepare("SELECT id, json_extract(meta, '$.rating') AS r FROM summaries WHERE meta IS NOT NULL"),
+    db.prepare('SELECT id, by FROM favs ORDER BY at'),
   ]);
+  const favs = {};
+  for (const r of fv.results) (favs[r.id] = favs[r.id] || []).push(r.by);
   const ratings = {};
   for (const r of rt.results) if (r.r) ratings[r.id] = r.r;
   const eps = {};
@@ -67,6 +71,7 @@ export async function snapshot(db) {
     posters,
     eps,
     ratings,
+    favs,
     hidden: hd.results.map((r) => ({ id: r.id, by: r.by, at: r.at })),
     custom: sh.results.map((r) => ({ id: r.id, name: r.name, year: r.year, genre: r.genre, poster: r.poster, by: r.added_by, at: r.added_at })),
   };
