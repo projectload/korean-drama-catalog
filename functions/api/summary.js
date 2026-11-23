@@ -2,6 +2,7 @@
 // Looks the show up on TVmaze once, translates the summary to Arabic, and caches it in D1 for everyone.
 import { json, authorized, ensureSchema } from './state.js';
 import { getJSON, tvSearch } from './posters.js';
+import { tmdbKey, tmdbFind } from './_tmdb.js';
 
 const strip = (h) =>
   String(h || '')
@@ -92,20 +93,35 @@ export async function onRequestGet({ request, env }) {
   if (!Number.isInteger(id) || id < 1 || !name) return json({ error: 'bad_input' }, 400);
   const db = env.DB;
   await ensureSchema(db);
+  const key = await tmdbKey(db, env);
   const row = await db.prepare('SELECT ar, en, meta FROM summaries WHERE id = ?1').bind(id).first();
-  if (row && (row.ar || !row.en)) return json({ ar: row.ar, en: row.en, meta: JSON.parse(row.meta || '{}'), cached: true });
+  const meta0 = row ? JSON.parse(row.meta || '{}') : null;
+  const tmdbDone = !key || (meta0 && meta0.tmdb !== undefined);
+  if (row && tmdbDone && (row.ar || !row.en)) return json({ ar: row.ar, en: row.en, meta: meta0, cached: true });
 
-  let found;
-  try { found = row ? { en: row.en, meta: JSON.parse(row.meta || '{}') } : await lookup(name, year); }
-  catch { return json({ error: 'lookup_failed' }, 502); }
-  if (!found) {
-    await db.prepare('INSERT OR REPLACE INTO summaries (id, ar, en, meta, at) VALUES (?1, NULL, NULL, ?2, ?3)').bind(id, '{}', Date.now()).run();
-    return json({ ar: null, en: null, meta: {} });
+  // 1) TMDB: human-written Arabic overview (checked once per show)
+  let t = null;
+  if (key && !(meta0 && meta0.tmdb !== undefined)) { try { t = await tmdbFind(name, year, key); } catch {} }
+
+  // 2) TVmaze for English text / metadata
+  let found = null;
+  if (row) found = { en: row.en, meta: meta0 || {} };
+  else { try { found = await lookup(name, year); } catch {} }
+  if (!found) found = { en: null, meta: {} };
+  const meta = { ...(found.meta || {}) };
+  if (key) meta.tmdb = t ? t.id : null;
+  if (t) {
+    if (!meta.rating && t.rating) meta.rating = t.rating;
+    if (!meta.network && t.network) meta.network = t.network;
+    if ((!meta.genres || !meta.genres.length) && t.genres.length) meta.genres = t.genres;
+    if (!meta.episodes && t.episodes) meta.episodes = t.episodes;
   }
-  let ar = null;
-  try { ar = await translate(found.en); } catch {}
-  await db.prepare('INSERT OR REPLACE INTO summaries (id, ar, en, meta, at) VALUES (?1, ?2, ?3, ?4, ?5)').bind(id, ar, found.en || null, JSON.stringify(found.meta), Date.now()).run();
-  return json({ ar, en: found.en || null, meta: found.meta });
+  let en = found.en || (t && t.overviewEn) || null;
+  let ar = (t && t.overviewAr) || (row && row.ar) || null;
+  if (t && t.overviewAr) meta.arSource = 'tmdb';
+  if (!ar && en) { try { ar = await translate(en); } catch {} }
+  await db.prepare('INSERT OR REPLACE INTO summaries (id, ar, en, meta, at) VALUES (?1, ?2, ?3, ?4, ?5)').bind(id, ar, en, JSON.stringify(meta), Date.now()).run();
+  return json({ ar, en, meta });
 }
 
 // POST /api/summary {id, ar}: store an Arabic translation made on the device when the server could not translate.

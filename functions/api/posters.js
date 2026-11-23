@@ -2,6 +2,7 @@
 // POST /api/posters        {id, url, by}  -> set a poster manually
 // POST /api/posters?resolve {ids:[...]}   -> look up posters (TVmaze, season images, Wikipedia) on the server
 import { json, authorized, cleanName, ensureSchema, snapshot } from './state.js';
+import { tmdbKey, tmdbFind, tmdbSearchPosters } from './_tmdb.js';
 
 const UA = { 'user-agent': 'korean-drama-catalog/1.0 (personal watch list)' };
 const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -51,8 +52,11 @@ async function wiki(name, year) {
   return null;
 }
 
-async function resolve(name, year) {
+async function resolve(name, year, key) {
   let failed = false;
+  if (key) {
+    try { const t = await tmdbFind(name, year, key); if (t && t.poster) return [t.poster, 'tmdb']; } catch { failed = true; }
+  }
   const m = name.match(/^(.*?)(?:\s+Class)?\s+(\d)$/);
   if (m && +m[2] > 1) {
     try { const u = await seasonImage(m[1], +m[2]); if (u) return [u, 'tvmaze-season']; } catch { failed = true; }
@@ -73,12 +77,13 @@ export async function onRequestPost({ request, env }) {
 
   if (new URL(request.url).searchParams.has('resolve')) {
     const items = Array.isArray(b.items) ? b.items.slice(0, 6) : [];
+    const key = await tmdbKey(db, env);
     const stmts = [];
     for (const it of items) {
       const id = Number(it.id);
       const name = typeof it.name === 'string' ? it.name.slice(0, 80) : '';
       if (!Number.isInteger(id) || id < 1 || !name) continue;
-      const [url, source] = await resolve(name, Number(it.year) || null);
+      const [url, source] = await resolve(name, Number(it.year) || null, key);
       if (source === 'retry') continue; // temporary error: leave it for a later attempt
       stmts.push(
         db.prepare('INSERT INTO posters (id, url, source, by, at) VALUES (?1, ?2, ?3, NULL, ?4) ON CONFLICT(id) DO NOTHING').bind(id, url, source, now)
@@ -97,4 +102,15 @@ export async function onRequestPost({ request, env }) {
     .bind(id, url, by, now)
     .run();
   return json({ ok: true, ...(await snapshot(db)) });
+}
+
+// GET /api/posters?q=  -> TMDB poster candidates for the picker
+export async function onRequestGet({ request, env }) {
+  if (!env.DB) return json({ error: 'no_db' }, 500);
+  if (!authorized(request, env)) return json({ error: 'key' }, 401);
+  await ensureSchema(env.DB);
+  const q = (new URL(request.url).searchParams.get('q') || '').slice(0, 80);
+  const key = await tmdbKey(env.DB, env);
+  if (!key || !q) return json({ items: [] });
+  try { return json({ items: await tmdbSearchPosters(q, key) }); } catch { return json({ items: [] }); }
 }

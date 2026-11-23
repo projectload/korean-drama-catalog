@@ -213,6 +213,7 @@ label.blk{margin-bottom:10px}
 .dn{font-size:12px;font-weight:700;margin-top:5px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5}
 .dm{font-size:10px;color:var(--sub);text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.6}
 .rate{position:absolute;top:5px;right:5px;z-index:1;background:#0b1020d9;color:#ffd166;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:700;line-height:1.6;direction:ltr}
+.src{font-size:11px;color:#7f8aa0;margin-inline-start:auto;align-self:center}
 .epbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:4px 0 10px}
 .epbox:empty{display:none}
 .ssel{flex:none;width:auto;min-height:36px;padding:4px 30px 4px 10px;font-size:14px}
@@ -341,7 +342,7 @@ label.blk{margin-bottom:10px}
 <input type="file" id="file" accept=".json" hidden>
 
 <script>
-const BUILD='1795413658';
+const BUILD='1795466555';
 const BUILTIN=[{"id": 1, "name": "Mouse", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 2, "name": "Beyond Evil", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 3, "name": "Flower of Evil", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 4, "name": "Through the Darkness", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 5, "name": "Blind", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 6, "name": "Nine Puzzles", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 7, "name": "Black Out", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 8, "name": "The Killing Vote", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 9, "name": "Tell Me What You Saw", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 10, "name": "Queen Mantis", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 11, "name": "The Worst of Evil", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 12, "name": "My Name", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 13, "name": "Bloodhounds", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 14, "name": "Mercy for None", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 15, "name": "Gangnam B-Side", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 16, "name": "Vincenzo", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 17, "name": "Narco-Saints", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 18, "name": "A Shop for Killers", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 19, "name": "Trigger", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 20, "name": "Low Life", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 21, "name": "Taxi Driver", "year": 2021, "genre": "انتقام ومؤامرات"}, {"id": 22, "name": "The Manipulated", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 23, "name": "Big Mouth", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 24, "name": "The Glory", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 25, "name": "Vigilante", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 26, "name": "Revenge of Others", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 27, "name": "Karma", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 28, "name": "Buried Hearts", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 29, "name": "The Veil", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 30, "name": "Weak Hero Class 1", "year": 2022, "genre": "أكشن ومخابرات"}, {"id": 31, "name": "Weak Hero Class 2", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 32, "name": "Study Group", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 33, "name": "Moving", "year": 2023, "genre": "أكشن ومخابرات"}, {"id": 34, "name": "Good Boy", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 35, "name": "A Killer Paradox", "year": 2024, "genre": "غموض نفسي"}, {"id": 36, "name": "The Frog", "year": 2024, "genre": "غموض نفسي"}, {"id": 37, "name": "The Price of Confession", "year": 2025, "genre": "غموض نفسي"}, {"id": 38, "name": "The Hunter with a Scalpel", "year": 2025, "genre": "غموض نفسي"}, {"id": 39, "name": "Hyper Knife", "year": 2025, "genre": "غموض نفسي"}, {"id": 40, "name": "As You Stood By", "year": 2025, "genre": "غموض نفسي"}, {"id": 41, "name": "Nobody Knows", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 42, "name": "Stranger 2", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 43, "name": "The Good Detective", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 44, "name": "Extracurricular", "year": 2020, "genre": "عصابات وأكشن"}, {"id": 45, "name": "Train", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 46, "name": "Kairos", "year": 2020, "genre": "غموض نفسي"}, {"id": 47, "name": "Awaken", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 48, "name": "Memorist", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 49, "name": "365: Repeat the Year", "year": 2020, "genre": "غموض نفسي"}, {"id": 50, "name": "Team Bulldog: Off-duty Investigation", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 51, "name": "Chimera", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 52, "name": "Hometown", "year": 2021, "genre": "غموض نفسي"}, {"id": 53, "name": "One Ordinary Day", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 54, "name": "Bad and Crazy", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 55, "name": "D.P.", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 56, "name": "Inspector Koo", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 57, "name": "The King of Pigs", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 58, "name": "A Model Family", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 59, "name": "Insider", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 60, "name": "Military Prosecutor Doberman", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 61, "name": "Grid", "year": 2022, "genre": "غموض نفسي"}, {"id": 62, "name": "Connect", "year": 2022, "genre": "غموض نفسي"}, {"id": 63, "name": "Bargain", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 64, "name": "Decoy", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 65, "name": "Longing for You", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 66, "name": "The Kidnapping Day", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 67, "name": "Evilive", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 68, "name": "The Deal", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 69, "name": "Payback: Money and Power", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 70, "name": "The Escape of the Seven", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 71, "name": "Connection", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 72, "name": "Crash", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 73, "name": "Flex X Cop", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 74, "name": "The Bequeathed", "year": 2024, "genre": "غموض نفسي"}, {"id": 75, "name": "Pyramid Game", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 76, "name": "The Whirlwind", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 77, "name": "The Tyrant", "year": 2024, "genre": "أكشن ومخابرات"}, {"id": 78, "name": "No Way Out: The Roulette", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 79, "name": "Doubt", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 80, "name": "The Judge from Hell", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 81, "name": "Unmasked", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 82, "name": "The Defects", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 83, "name": "Tempest", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 84, "name": "Made in Korea", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 85, "name": "No Mercy", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 86, "name": "Walking on Thin Ice", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 87, "name": "Villains", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 88, "name": "Shark: The Storm", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 89, "name": "Undercover High School", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 90, "name": "Friendly Rivalry", "year": 2025, "genre": "غموض نفسي"}];
 let shows=BUILTIN.slice(),byId={};
 function rebuild(){let hid=new Set((data.hidden||[]).map(h=>h.id));shows=BUILTIN.filter(s=>!hid.has(s.id)).concat((data.custom||[]).map(c=>({id:c.id,name:c.name,year:c.year||'',genre:c.genre||'أخرى',custom:true,by:c.by,at:c.at,poster:c.poster})));byId=Object.fromEntries(shows.map(s=>[s.id,s]))}
@@ -510,6 +511,7 @@ function render(){
       <button class="row" id="switchUser"><span class="grow">تبديل المستخدم</span><span class="v">‹</span></button></div>
     <div class="section"><h3>المشتركين</h3><div class="people">${people.map(n=>{let x=stat(n);return `<div class="person">${avatar(n)}<div><b>${esc(n)}</b><small>✓ ${x.seen} · ▶ ${x.watching}${lastSeen(n)?' · نشط '+lastSeen(n):''}</small></div></div>`}).join('')||'<div class="muted">لا أحد للحين</div>'}</div></div>
     <div class="section"><h3>الأمان</h3><button class="row" id="pinBtn"><span class="grow">🔒 الرقم السري<br><span class="muted">${pinSet===false?'ما انضبط — أي أحد عنده الرابط يقدر يدخل':'يُطلب مرة وحدة على كل جهاز جديد'}</span></span><span class="v">${pinSet?'تغيير':'تعيين'} ‹</span></button></div>
+    <div class="section"><h3>مصادر البيانات</h3><button class="row" id="tmdbBtn"><span class="grow">🎬 TMDB<br><span class="muted">${tmdbOn?'مفعّل — نبذة عربية وبوسترات وتقييمات':'غير مفعّل — أضف مفتاح API'}</span></span><span class="v">${tmdbOn?'✓':'إضافة ‹'}</span></button></div>
     <div class="section"><h3>اكتشف</h3><button class="row" id="worldBtn"><span class="grow">🌍 الجديد العالمي</span><span class="v">${disc&&disc.world?((disc.world.new||[]).length+(disc.world.upcoming||[]).length)+' ‹':'‹'}</span></button></div>
     <div class="section"><h3>المشاركة</h3>
       <button class="row" id="share"><span class="grow">مشاركة الرابط الخاص</span><span class="v">🔗</span></button>
@@ -521,6 +523,7 @@ function render(){
     <div class="section"><h3>عن التطبيق</h3><div class="row"><span class="grow">الإصدار</span><span class="v" dir="ltr">${new Date(BUILD*1000).toLocaleString('ar',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'})}</span></div><div class="row"><span class="grow">عدد المسلسلات</span><span class="v">${shows.length}</span></div><div class="row"><span class="grow">مصدر البوسترات</span><a class="v" href="https://www.tvmaze.com/" target="_blank" rel="noopener" style="color:#8bc5ff">TVmaze</a></div></div>`;
     $('switchUser').onclick=()=>{ME='';ls.set(LS.me,'');showLogin()};
     v.querySelectorAll('[data-restore]').forEach(b=>b.onclick=()=>restoreShow(+b.dataset.restore));
+    $('tmdbBtn').onclick=openTmdb;if(tmdbOn===null)checkTmdb();
     $('worldBtn').onclick=openWorld;$('pinBtn').onclick=openPinSetup;if(pinSet===null)checkPinSet();
     $('share').onclick=shareLink;$('export').onclick=exportData;$('import').onclick=()=>$('file').click();
   }
@@ -703,15 +706,34 @@ async function setEp(id,season,ep,total){
 function quickPlus(id){let c=curEp(id);let n=c.total?Math.min(c.total,c.ep+1):c.ep+1;if(n===c.ep){toast('وصلتوا آخر حلقة 🎉');return}setEp(id,c.season,n,c.total);toast('🎞 '+byId[id].name+' — الحلقة '+n+(c.total?' من '+c.total:''))}
 
 const ratingOf=id=>{let r=(data.ratings||{})[id]||(sumCache[id]&&sumCache[id].meta&&sumCache[id].meta.rating);return r?Number(r).toFixed(1):''};
+/* ---------- TMDB key ---------- */
+let tmdbOn=null;
+async function checkTmdb(){try{let r=await fetch('/api/config',{headers:{'x-key':KEY}});tmdbOn=r.ok?!!(await r.json()).tmdb:false;if(tab==='me')render()}catch(e){}}
+function openTmdb(){
+  openId='tmdb';
+  openFull(`<div class="full-head"><button class="x" id="tClose" aria-label="إغلاق">✕</button><h2>🎬 مفتاح TMDB</h2><span style="width:40px"></span></div>
+  <div class="full-body"><p class="muted" style="line-height:1.8">${tmdbOn?'المفتاح مضبوط. تقدر تستبدله بمفتاح ثاني:':'ألصق مفتاح API (32 حرف) من إعدادات حسابك في themoviedb.org:'}</p>
+  <input class="field wide" id="tKey" dir="ltr" placeholder="API Key" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="tmdb-key">
+  <button class="primary wide" id="tSave" style="margin-top:12px">حفظ وتفعيل</button><div class="muted" id="tMsg" style="margin-top:10px"></div></div>`);
+  $('tClose').onclick=closeSheet;
+  $('tSave').onclick=async()=>{let k=$('tKey').value.trim();if(!/^[a-f0-9]{32}$/i.test(k)){$('tMsg').textContent='المفتاح لازم يكون 32 حرف (أرقام وحروف a-f)';return}
+    let b=$('tSave');b.disabled=true;b.textContent='جاري التحقق…';
+    try{let r=await fetch('/api/config',{method:'POST',headers:{'content-type':'application/json','x-key':KEY},body:JSON.stringify({tmdb:k})});let d=await r.json();
+      if(r.ok){tmdbOn=true;sumCache={};ls.set('kd_sum3',sumCache);closeSheet();render();toast('✓ تم تفعيل TMDB — البيانات تتحدث في الخلفية');pull().then(resolveMissing).then(()=>{prefetching=false;prefetchSummaries()});return}
+      $('tMsg').textContent=d.error==='invalid'?'TMDB رفض المفتاح — تأكد إنه API Key مو Read Access Token':'تعذّر الحفظ'}catch(e){$('tMsg').textContent='تعذّر الاتصال'}
+    b.disabled=false;b.textContent='حفظ وتفعيل'};
+  setTimeout(()=>$('tKey').focus(),250);
+}
+
 /* ---------- Summary ---------- */
-let sumCache=ls.get('kd_sum2',{}),sumLang='ar';
+let sumCache=ls.get('kd_sum3',{}),sumLang='ar';try{localStorage.removeItem('kd_sum2')}catch(e){}
 function paintSummary(s,d){
   let box=$('sumBox');if(!box||openId!==s.id)return;
   if(!d){box.innerHTML='<div class="muted">تعذّر تحميل النبذة</div>';return}
   let m=d.meta||{},ex=$('shExtra');
   if(ex)ex.textContent=(m.network?' · '+m.network:'')+(m.rating?' · ⭐ '+m.rating:'');
   let txt=sumLang==='ar'?(d.ar||d.en):(d.en||d.ar);
-  box.innerHTML=txt?`<p class="sum-txt ${sumLang==='ar'&&d.ar?'':'en'}" id="sumTxt">${esc(txt)}</p><div class="sum-links">${txt.length>160?'<button class="link" id="sumMore">المزيد</button>':''}${d.ar&&d.en?`<button class="link" id="sumLang">${sumLang==='ar'?'English':'عربي'}</button>`:''}</div>`:'';
+  box.innerHTML=txt?`<p class="sum-txt ${sumLang==='ar'&&d.ar?'':'en'}" id="sumTxt">${esc(txt)}</p><div class="sum-links">${txt.length>160?'<button class="link" id="sumMore">المزيد</button>':''}${sumLang==='ar'&&d.ar?`<span class="src">${m.arSource==='tmdb'?'TMDB':'ترجمة آلية'}</span>`:''}${d.ar&&d.en?`<button class="link" id="sumLang">${sumLang==='ar'?'English':'عربي'}</button>`:''}</div>`:'';
   let lb=$('sumLang');if(lb)lb.onclick=()=>{sumLang=sumLang==='ar'?'en':'ar';paintSummary(s,d)};
   let mb=$('sumMore');if(mb)mb.onclick=()=>{$('sumTxt').classList.add('open');mb.remove()};
 }
@@ -732,7 +754,7 @@ async function loadSummary(s){
       let ar=await translateOnDevice(d.en);
       if(ar){d.ar=ar;fetch('/api/summary',{method:'POST',headers:{'content-type':'application/json','x-key':KEY},body:JSON.stringify({id:s.id,ar})}).catch(()=>{})}
       let m=$('trMsg');if(m)m.remove()}
-    if(d.ar||(d.cached&&!d.en)){sumCache[s.id]=d;ls.set('kd_sum2',sumCache)}
+    if(d.ar||(d.cached&&!d.en)){sumCache[s.id]=d;ls.set('kd_sum3',sumCache)}
     paintSummary(s,d)}
   catch(e){paintSummary(s,null)}
 }
@@ -745,7 +767,7 @@ async function prefetchSummaries(){
     while(document.hidden||openId!=null)await new Promise(r=>setTimeout(r,2000));
     try{let r=await fetch(`/api/summary?id=${s.id}&name=${encodeURIComponent(s.name)}&year=${s.year||''}`,{headers:{'x-key':KEY}});
       if(!r.ok)throw 0;let d=await r.json();
-      if(d.ar||(d.cached&&!d.en)){sumCache[s.id]=d;ls.set('kd_sum2',sumCache);if(d.meta&&d.meta.rating&&!(data.ratings||{})[s.id]){(data.ratings=data.ratings||{})[s.id]=d.meta.rating;let c=document.querySelector(`.card[data-id="${s.id}"] .poster`);if(c&&!c.querySelector('.rate'))c.insertAdjacentHTML('afterbegin',`<span class="rate">⭐ ${ratingOf(s.id)}</span>`)}}fails=0}
+      if(d.ar||(d.cached&&!d.en)){sumCache[s.id]=d;ls.set('kd_sum3',sumCache);if(d.meta&&d.meta.rating&&!(data.ratings||{})[s.id]){(data.ratings=data.ratings||{})[s.id]=d.meta.rating;let c=document.querySelector(`.card[data-id="${s.id}"] .poster`);if(c&&!c.querySelector('.rate'))c.insertAdjacentHTML('afterbegin',`<span class="rate">⭐ ${ratingOf(s.id)}</span>`)}}fails=0}
     catch(e){if(++fails>=3)break}
     await new Promise(r=>setTimeout(r,1200));
   }
@@ -836,6 +858,7 @@ function openPosterPicker(id){
 async function posterSearch(q,id){
   q=q.trim();if(q.length<2)return;let out=[],seen=new Set();
   const add=(u,label)=>{if(u&&!seen.has(u)){seen.add(u);out.push({u,label})}};
+  try{let r=await fetch('/api/posters?q='+encodeURIComponent(q),{headers:{'x-key':KEY}});if(r.ok)(await r.json()).items.forEach(o=>add(o.u,o.label))}catch(e){}
   try{let arr=await fetch('https://api.tvmaze.com/search/shows?q='+encodeURIComponent(q)).then(r=>r.json());
     for(const x of arr.slice(0,6)){let sh=x.show;if(sh.image)add(sh.image.medium,sh.name+' '+(sh.premiered||'').slice(0,4))}
     let kr=arr.find(x=>x.show.language==='Korean');
