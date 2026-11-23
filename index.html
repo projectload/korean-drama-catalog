@@ -212,6 +212,22 @@ label.blk{margin-bottom:10px}
 .dhave{position:absolute;top:5px;left:5px;background:#2fd39a;color:#0b1020;border-radius:999px;padding:1px 6px;font-size:9px;font-weight:700;line-height:1.7}
 .dn{font-size:12px;font-weight:700;margin-top:5px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5}
 .dm{font-size:10px;color:var(--sub);text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.6}
+.epbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:4px 0 10px}
+.epbox:empty{display:none}
+.ssel{flex:none;width:auto;min-height:36px;padding:4px 30px 4px 10px;font-size:14px}
+.ep-ctrl{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.epb{width:56px;height:56px;border-radius:16px;background:var(--field);color:#fff;font-size:28px;font-weight:700;line-height:1}
+.epb.plus{background:#f5b942;color:#0b1020}
+.epb:active{transform:scale(.94)}
+.ep-num{text-align:center;flex:1}
+.ep-num b{display:block;font-size:34px;color:#fff;line-height:1.2}
+.ep-num span{font-size:13px;color:var(--sub)}
+.ep-next{margin-top:10px;font-size:13px;color:#f5b942;line-height:1.6}
+.epbadge{position:absolute;bottom:8px;right:5px;z-index:1;background:#0b1020d9;color:#f5b942;border-radius:999px;padding:1px 7px;font-size:10px;font-weight:700;line-height:1.7}
+.epbar{position:absolute;left:0;right:0;bottom:0;height:4px;background:#0008;z-index:1}
+.epbar i{display:block;height:100%;background:#f5b942}
+.plus1{position:absolute;bottom:8px;left:5px;z-index:2;background:#f5b942;color:#0b1020;border-radius:10px;padding:4px 9px;font-size:13px;font-weight:700;line-height:1.4;box-shadow:0 2px 8px #0008}
+.plus1:active{transform:scale(.92)}
 .sumbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:4px 0 8px}
 .sum-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;color:#fff}
 .sum-h .link{padding:0}
@@ -286,7 +302,7 @@ label.blk{margin-bottom:10px}
 <input type="file" id="file" accept=".json" hidden>
 
 <script>
-const BUILD='1795386083';
+const BUILD='1795410804';
 const BUILTIN=[{"id": 1, "name": "Mouse", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 2, "name": "Beyond Evil", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 3, "name": "Flower of Evil", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 4, "name": "Through the Darkness", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 5, "name": "Blind", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 6, "name": "Nine Puzzles", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 7, "name": "Black Out", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 8, "name": "The Killing Vote", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 9, "name": "Tell Me What You Saw", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 10, "name": "Queen Mantis", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 11, "name": "The Worst of Evil", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 12, "name": "My Name", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 13, "name": "Bloodhounds", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 14, "name": "Mercy for None", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 15, "name": "Gangnam B-Side", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 16, "name": "Vincenzo", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 17, "name": "Narco-Saints", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 18, "name": "A Shop for Killers", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 19, "name": "Trigger", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 20, "name": "Low Life", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 21, "name": "Taxi Driver", "year": 2021, "genre": "انتقام ومؤامرات"}, {"id": 22, "name": "The Manipulated", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 23, "name": "Big Mouth", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 24, "name": "The Glory", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 25, "name": "Vigilante", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 26, "name": "Revenge of Others", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 27, "name": "Karma", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 28, "name": "Buried Hearts", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 29, "name": "The Veil", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 30, "name": "Weak Hero Class 1", "year": 2022, "genre": "أكشن ومخابرات"}, {"id": 31, "name": "Weak Hero Class 2", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 32, "name": "Study Group", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 33, "name": "Moving", "year": 2023, "genre": "أكشن ومخابرات"}, {"id": 34, "name": "Good Boy", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 35, "name": "A Killer Paradox", "year": 2024, "genre": "غموض نفسي"}, {"id": 36, "name": "The Frog", "year": 2024, "genre": "غموض نفسي"}, {"id": 37, "name": "The Price of Confession", "year": 2025, "genre": "غموض نفسي"}, {"id": 38, "name": "The Hunter with a Scalpel", "year": 2025, "genre": "غموض نفسي"}, {"id": 39, "name": "Hyper Knife", "year": 2025, "genre": "غموض نفسي"}, {"id": 40, "name": "As You Stood By", "year": 2025, "genre": "غموض نفسي"}, {"id": 41, "name": "Nobody Knows", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 42, "name": "Stranger 2", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 43, "name": "The Good Detective", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 44, "name": "Extracurricular", "year": 2020, "genre": "عصابات وأكشن"}, {"id": 45, "name": "Train", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 46, "name": "Kairos", "year": 2020, "genre": "غموض نفسي"}, {"id": 47, "name": "Awaken", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 48, "name": "Memorist", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 49, "name": "365: Repeat the Year", "year": 2020, "genre": "غموض نفسي"}, {"id": 50, "name": "Team Bulldog: Off-duty Investigation", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 51, "name": "Chimera", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 52, "name": "Hometown", "year": 2021, "genre": "غموض نفسي"}, {"id": 53, "name": "One Ordinary Day", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 54, "name": "Bad and Crazy", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 55, "name": "D.P.", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 56, "name": "Inspector Koo", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 57, "name": "The King of Pigs", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 58, "name": "A Model Family", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 59, "name": "Insider", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 60, "name": "Military Prosecutor Doberman", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 61, "name": "Grid", "year": 2022, "genre": "غموض نفسي"}, {"id": 62, "name": "Connect", "year": 2022, "genre": "غموض نفسي"}, {"id": 63, "name": "Bargain", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 64, "name": "Decoy", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 65, "name": "Longing for You", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 66, "name": "The Kidnapping Day", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 67, "name": "Evilive", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 68, "name": "The Deal", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 69, "name": "Payback: Money and Power", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 70, "name": "The Escape of the Seven", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 71, "name": "Connection", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 72, "name": "Crash", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 73, "name": "Flex X Cop", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 74, "name": "The Bequeathed", "year": 2024, "genre": "غموض نفسي"}, {"id": 75, "name": "Pyramid Game", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 76, "name": "The Whirlwind", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 77, "name": "The Tyrant", "year": 2024, "genre": "أكشن ومخابرات"}, {"id": 78, "name": "No Way Out: The Roulette", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 79, "name": "Doubt", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 80, "name": "The Judge from Hell", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 81, "name": "Unmasked", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 82, "name": "The Defects", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 83, "name": "Tempest", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 84, "name": "Made in Korea", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 85, "name": "No Mercy", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 86, "name": "Walking on Thin Ice", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 87, "name": "Villains", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 88, "name": "Shark: The Storm", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 89, "name": "Undercover High School", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 90, "name": "Friendly Rivalry", "year": 2025, "genre": "غموض نفسي"}];
 let shows=BUILTIN.slice(),byId={};
 function rebuild(){let hid=new Set((data.hidden||[]).map(h=>h.id));shows=BUILTIN.filter(s=>!hid.has(s.id)).concat((data.custom||[]).map(c=>({id:c.id,name:c.name,year:c.year||'',genre:c.genre||'أخرى',custom:true,by:c.by,at:c.at,poster:c.poster})));byId=Object.fromEntries(shows.map(s=>[s.id,s]))}
@@ -326,7 +342,7 @@ async function api(method,body,path){
   return res.json();
 }
 function syncState(cls,txt){let el=$('sync');el.className='sync '+(cls||'');$('syncTxt').textContent=txt}
-function apply(d){let before=JSON.stringify([data.custom||[],data.hidden||[]]);data={states:d.states||{},log:d.log||[],users:d.users||[],custom:d.custom||[],posters:d.posters||{},hidden:d.hidden||[]};ls.set(LS.cache,data);rebuild();if(JSON.stringify([data.custom,data.hidden])!==before)renderChips()}
+function apply(d){let before=JSON.stringify([data.custom||[],data.hidden||[]]);data={states:d.states||{},log:d.log||[],users:d.users||[],custom:d.custom||[],posters:d.posters||{},hidden:d.hidden||[],eps:d.eps||{}};ls.set(LS.cache,data);rebuild();if(JSON.stringify([data.custom,data.hidden])!==before)renderChips()}
 async function pull(first){
   if(pending)return;
   try{let d=await api('GET');if(pending)return;apply(d);if(first)boot();else{render();refreshSheet()}syncState('','متزامن · '+new Date().toLocaleTimeString('ar',{hour:'numeric',minute:'2-digit'}))}
@@ -385,9 +401,12 @@ function cardHTML(s){
   let badge=state==='none'?'':`<span class="badge ${state}">${state==='seen'?'✓ شاهدته':'▶ أشاهده'}</span>`;
   let pu=posterOf(s.id),img=pu?`<img src="${esc(pu)}" loading="lazy" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:'';
   let by=x&&x.by&&state!=='none'?`<div class="by">${esc(x.by)} · ${ago(x.at)}</div>`:'';
-  return `<button class="card ${state==='none'?'':state}" data-id="${s.id}"><div class="poster">${badge}<span>🎬<br>${esc(s.name)}</span>${img}</div><div class="info"><div class="t">${esc(s.name)}</div><div class="m">${s.year?s.year+' · ':''}${esc(s.genre)}${s.custom?' · ➕':''}</div>${by}</div></button>`;
+  let e=(data.eps||{})[s.id]?curEp(s.id):null,epHTML='';
+  if(e&&state==='watching'&&e.ep>0){let pc=e.total?Math.min(100,Math.round(e.ep/e.total*100)):0;epHTML=`<span class="epbadge">ح${e.ep}${e.total?'/'+e.total:''}</span>${e.total?`<span class="epbar"><i style="width:${pc}%"></i></span>`:''}`}
+  if(state==='watching'&&tab==='watching')epHTML+=`<span class="plus1" role="button" dir="ltr" data-plus="${s.id}">+1</span>`;
+  return `<button class="card ${state==='none'?'':state}" data-id="${s.id}"><div class="poster">${badge}<span>🎬<br>${esc(s.name)}</span>${img}${epHTML}</div><div class="info"><div class="t">${esc(s.name)}</div><div class="m">${s.year?s.year+' · ':''}${esc(s.genre)}${s.custom?' · ➕':''}</div>${by}</div></button>`;
 }
-function bindCards(root){root.querySelectorAll('.card').forEach(c=>c.onclick=()=>openSheet(+c.dataset.id))}
+function bindCards(root){root.querySelectorAll('.card').forEach(c=>c.onclick=e=>{let p=e.target.closest('.plus1');if(p){e.stopPropagation();quickPlus(+p.dataset.plus);return}openSheet(+c.dataset.id)})}
 function counts(){let c={seen:0,watching:0};shows.forEach(s=>{let v=st(s.id);if(c[v]!=null)c[v]++});return c}
 function render(){
   let c=counts();
@@ -403,12 +422,13 @@ function render(){
     v.innerHTML=`<div class="summary"><div class="sum s-seen"><b>${c.seen}</b><span>✓ شاهدناه</span></div><div class="sum s-watch"><b>${c.watching}</b><span>▶ نشاهده</span></div><div class="sum s-left"><b>${shows.length-c.seen-c.watching}</b><span>المتبقي</span></div></div><div class="prog-l"><span>التقدّم</span><span>${pct}% من ${shows.length}</span></div><div class="progress"><i style="width:${pct}%"></i></div>`+(!query.trim()&&genre==='all'?discoverHTML():'')+
       (list.length?`<div class="grid">${list.map(cardHTML).join('')}</div>`:`<div class="empty"><div class="big">🔍</div>ما فيه نتائج${query?`<br><button class="primary" style="margin-top:12px" id="addFromSearch">➕ أضف "${esc(query)}"</button>`:''}</div>`);
   }else if(tab==='watching'||tab==='seen'){
+    if(tab==='watching')shows.filter(x=>st(x.id)==='watching'&&!epInfo[x.id]).slice(0,10).forEach((x,i)=>setTimeout(()=>loadEpInfo(x,true),i*400));
     let list=filtered(shows.filter(s=>st(s.id)===tab)).sort((a,b)=>(data.states[b.id].at||0)-(data.states[a.id].at||0));
     v.innerHTML=list.length?`<div class="grid">${list.map(cardHTML).join('')}</div>`:`<div class="empty"><div class="big">${tab==='seen'?'🏁':'🍿'}</div>${tab==='seen'?'ما خلصتوا أي مسلسل للحين':'ما تشاهدون شي حاليًا'}<br><span class="muted">اضغط على أي مسلسل من "الكل" وغيّر حالته</span></div>`;
   }else if(tab==='activity'){
     if(!data.log.length){v.innerHTML=`<div class="empty"><div class="big">📝</div>ما فيه نشاط للحين<br><span class="muted">أي تعديل منك أو من شريكك بيظهر هنا</span></div>`}
     else{let out='',last='';for(const l of data.log){let s=byId[l.id];if(!s)continue;let d=new Date(l.at).toLocaleDateString('ar',{weekday:'long',day:'numeric',month:'long'});if(d!==last){out+=`<div class="day">${d}</div>`;last=d}
-      let pu=posterOf(l.id),act={seen:'✓ أنهى المشاهدة',watching:'▶ بدأ المشاهدة',none:'◯ أزال العلامة',added:'➕ أضاف المسلسل'}[l.s]||'';
+      let pu=posterOf(l.id),act={seen:'✓ أنهى المشاهدة',watching:'▶ بدأ المشاهدة',none:'◯ أزال العلامة',added:'➕ أضاف المسلسل'}[l.s]||(epLabel(l.s)?'🎞 '+epLabel(l.s):'');
       out+=`<button class="item" data-id="${l.id}"><span class="thumb">${pu?`<img src="${esc(pu)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:'🎬'}</span><div class="txt"><div class="show" dir="ltr">${esc(s.name)}</div><div class="act"><span class="by-pill" style="--c:${colorFor(l.by)}">${esc(l.by)}</span><span class="st ${l.s}">${act}</span></div></div><time>${ago(l.at)}</time></button>`}
       v.innerHTML=`<div class="feed">${out}</div>`;v.querySelectorAll('.item').forEach(i=>i.onclick=()=>openSheet(+i.dataset.id))}
   }else if(tab==='me'){
@@ -450,6 +470,7 @@ function refreshSheet(){
   <div style="flex:1;min-width:0"><div class="sh-title">${esc(s.name)}</div><div class="sh-meta">${s.year} · ${esc(s.genre)}</div>
   ${x&&x.by?`<div class="sh-last">${avatar(x.by,22)} آخر تعديل: ${esc(x.by)} — ${ago(x.at)}</div>`:'<div class="sh-last muted">ما أحد عدّل عليه للحين</div>'}</div></div>
   <div class="status-btns">${['none','watching','seen'].map(k=>`<button class="sbtn ${state===k?'on':''}" data-s="${k}"><span class="ic">${{none:'◯',watching:'▶',seen:'✓'}[k]}</span>${LABEL[k]}</button>`).join('')}</div>
+  <div class="epbox" id="epBox"></div>
   <div class="where"><div class="sum-h"><b>📺 وين أشاهده؟</b><span class="muted" id="whereNet"></span></div>
     <div class="where-btns">
       <a class="wbtn jw" href="https://www.justwatch.com/om/search?q=${encodeURIComponent(s.name)}" target="_blank" rel="noopener">JustWatch<small>كل المنصات في عُمان</small></a>
@@ -457,13 +478,13 @@ function refreshSheet(){
       <a class="wbtn vk" href="https://www.viki.com/search?q=${encodeURIComponent(s.name)}" target="_blank" rel="noopener">Viki</a>
     </div></div>
   <div class="sumbox" id="sumBox"><div class="muted">⏳ جاري تحميل النبذة…</div></div>
-  ${hist.length?`<div class="sh-hist"><div class="muted" style="border:0">السجل</div>${hist.map(l=>`<div>${esc(l.by)}: ${l.s==='added'?'أضافه للقائمة':LABEL[l.s]} — ${ago(l.at)}</div>`).join('')}</div>`:''}
+  ${hist.length?`<div class="sh-hist"><div class="muted" style="border:0">السجل</div>${hist.map(l=>`<div>${esc(l.by)}: ${l.s==='added'?'أضافه للقائمة':(epLabel(l.s)||LABEL[l.s])} — ${ago(l.at)}</div>`).join('')}</div>`:''}
   <a class="link" href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(s.name+' '+s.year+' Korean drama poster')}" target="_blank" rel="noopener">🔎 ابحث عن البوستر في Google</a>
   <button class="link" id="chgPoster2" style="display:block">🖼 تغيير البوستر</button>
   <button class="del" id="delShow">🗑 حذف المسلسل من القائمة</button>${s.custom?`<div class="muted">أضافه ${esc(s.by||'')} ${s.at?ago(s.at):''}</div>`:''}`;
   $('sheet').querySelectorAll('.sbtn').forEach(b=>b.onclick=()=>{setState(openId,b.dataset.s);setTimeout(closeSheet,250)});
   $('chgPoster').onclick=$('chgPoster2').onclick=()=>openPosterPicker(openId);
-  loadSummary(s);
+  loadSummary(s);paintEps(s);loadEpInfo(s);
   let del=$('delShow');if(del)del.onclick=async()=>{if(!del.dataset.sure){del.dataset.sure=1;del.textContent='اضغط مرة ثانية للتأكيد';return}
     let id=openId,builtin=id<=1000;closeSheet();try{let d=await api('DELETE',null,'/api/shows?id='+id);apply(d);render();toast(builtin?'تم الحذف — تقدر ترجعه من حسابي ← المحذوفات':'تم حذف المسلسل')}catch(e){toast('تعذّر الحذف — تحقق من الاتصال')}};
 }
@@ -561,6 +582,46 @@ async function shareLink(){
 }
 function exportData(){let b=new Blob([JSON.stringify({version:2,states:Object.fromEntries(Object.entries(data.states).map(([k,v])=>[k,v.s]))},null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='korean-drama-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);toast('تم حفظ النسخة')}
 $('file').onchange=async e=>{let f=e.target.files[0];if(!f)return;e.target.value='';try{let o=JSON.parse(await f.text());if(!o.states)throw 0;let d=await api('POST',{states:o.states,by:ME});apply(d);render();toast('تم الاسترجاع')}catch(err){toast('ملف غير صالح أو لا يوجد اتصال')}};
+
+/* ---------- Episodes (shared progress) ---------- */
+let epInfo=ls.get('kd_epi',{});
+function epLabel(t){let m=/^ep(\d+)(?:s(\d+))?$/.exec(t||'');if(!m)return '';return (m[2]?'الموسم '+m[2]+' · ':'')+'وصلنا الحلقة '+m[1]}
+const fmtWhen=ts=>{let d=new Date(ts);return d.toLocaleDateString('ar',{weekday:'long',day:'numeric',month:'short'})+' · '+d.toLocaleTimeString('ar',{hour:'numeric',minute:'2-digit'})};
+function curEp(id){let e=(data.eps||{})[id]||{},info=epInfo[id]&&epInfo[id].d;let season=e.season||(info&&info.defaultSeason)||1;let si=info&&info.seasons?info.seasons.find(x=>x.season===season):null;return {season,ep:e.ep||0,total:(si&&si.total)||e.total||null,info,si}}
+function paintEps(s){
+  let box=$('epBox');if(!box||openId!==s.id)return;
+  let c=curEp(s.id),pc=c.total?Math.min(100,Math.round(c.ep/c.total*100)):0,info=c.info;
+  let seasons=info&&info.seasons&&info.seasons.length>1?`<select class="field ssel" id="epSeason">${info.seasons.map(x=>`<option value="${x.season}" ${x.season===c.season?'selected':''}>الموسم ${x.season}</option>`).join('')}</select>`:'';
+  let next=info&&info.next?`<div class="ep-next">🗓 الحلقة الجاية: ${info.next.season>1||seasons?'الموسم '+info.next.season+' · ':''}ح${info.next.number} — ${fmtWhen(info.next.airstamp)}</div>`:'';
+  let aired=c.si&&c.si.aired<c.si.total?`<span class="muted"> · نزل ${c.si.aired}</span>`:'';
+  let done=c.total&&c.ep>=c.total&&st(s.id)!=='seen'?`<button class="primary wide" id="epDone" style="margin-top:10px">🎉 خلصتوه؟ علّمه "شاهدته"</button>`:'';
+  box.innerHTML=`<div class="sum-h"><b>🎞 الحلقات</b>${seasons}</div>
+   <div class="ep-ctrl"><button class="epb" id="epMinus" aria-label="ناقص">−</button>
+   <div class="ep-num"><b>${c.ep}</b><span>${c.total?'من '+c.total:'حلقة'}${aired}</span></div>
+   <button class="epb plus" id="epPlus" aria-label="زائد">＋</button></div>
+   ${c.total?`<div class="progress" style="margin:10px 0 0"><i style="width:${pc}%"></i></div>`:''}${next}${done}`;
+  $('epMinus').onclick=()=>setEp(s.id,c.season,Math.max(0,c.ep-1),c.total);
+  $('epPlus').onclick=()=>setEp(s.id,c.season,c.total?Math.min(c.total,c.ep+1):c.ep+1,c.total);
+  let ss=$('epSeason');if(ss)ss.onchange=()=>{let n=+ss.value,si=info.seasons.find(x=>x.season===n);setEp(s.id,n,0,si?si.total:null)};
+  let dn=$('epDone');if(dn)dn.onclick=()=>{setState(s.id,'seen');setTimeout(closeSheet,250)};
+}
+async function loadEpInfo(s,quiet){
+  let c=epInfo[s.id];if(c&&Date.now()-c.t<12*3600e3)return;
+  try{let r=await fetch(`/api/episodes?id=${s.id}&name=${encodeURIComponent(s.name)}&year=${s.year||''}`,{headers:{'x-key':KEY}});if(!r.ok)return;let d=await r.json();
+    epInfo[s.id]={d,t:Date.now()};ls.set('kd_epi',epInfo);if(quiet){if(tab==='watching')render()}else paintEps(s)}catch(e){}
+}
+async function setEp(id,season,ep,total){
+  haptic();
+  data.eps=data.eps||{};data.eps[id]={season,ep,total:total||((data.eps[id]||{}).total)||null,by:ME,at:Date.now()};
+  ls.set(LS.cache,data);
+  if(ep>0&&st(id)==='none')setState(id,'watching');
+  render();if(openId===id)paintEps(byId[id]);
+  if(total&&ep>=total&&openId!==id)toast('🎉 خلصتوا '+byId[id].name+'! افتحه وعلّمه "شاهدته"');
+  pending++;syncState('busy','جاري الحفظ…');
+  try{let d=await api('POST',{id,season,ep,total,by:ME},'/api/episode');pending--;if(!pending){apply(d);render();if(openId===id)paintEps(byId[id])}syncState('','تم الحفظ')}
+  catch(e){pending--;if(e.message!=='key')syncState('err','لم يتم الحفظ — تحقق من الاتصال')}
+}
+function quickPlus(id){let c=curEp(id);let n=c.total?Math.min(c.total,c.ep+1):c.ep+1;if(n===c.ep){toast('وصلتوا آخر حلقة 🎉');return}setEp(id,c.season,n,c.total);toast('🎞 '+byId[id].name+' — الحلقة '+n+(c.total?' من '+c.total:''))}
 
 /* ---------- Summary ---------- */
 let sumCache=ls.get('kd_sum2',{}),sumLang='ar';
