@@ -42,7 +42,7 @@ export async function ensureSchema(db) {
 }
 
 export async function snapshot(db) {
-  const [st, lg, us, sh, po, hd, ep] = await db.batch([
+  const [st, lg, us, sh, po, hd, ep, rt] = await db.batch([
     db.prepare("SELECT id, state, updated_at, updated_by FROM states WHERE state != 'none' OR updated_by IS NOT NULL"),
     db.prepare('SELECT id, state, by, at FROM log ORDER BY rowid DESC LIMIT 150'),
     db.prepare('SELECT name, last_seen FROM users ORDER BY last_seen DESC'),
@@ -50,7 +50,10 @@ export async function snapshot(db) {
     db.prepare('SELECT id, url FROM posters'),
     db.prepare('SELECT id, by, at FROM hidden ORDER BY at DESC'),
     db.prepare('SELECT id, season, ep, total, by, at FROM eps'),
+    db.prepare("SELECT id, json_extract(meta, '$.rating') AS r FROM summaries WHERE meta IS NOT NULL"),
   ]);
+  const ratings = {};
+  for (const r of rt.results) if (r.r) ratings[r.id] = r.r;
   const eps = {};
   for (const r of ep.results) eps[r.id] = { season: r.season, ep: r.ep, total: r.total, by: r.by, at: r.at };
   const posters = {};
@@ -63,6 +66,7 @@ export async function snapshot(db) {
     users: us.results.map((r) => ({ name: r.name, at: r.last_seen })),
     posters,
     eps,
+    ratings,
     hidden: hd.results.map((r) => ({ id: r.id, by: r.by, at: r.at })),
     custom: sh.results.map((r) => ({ id: r.id, name: r.name, year: r.year, genre: r.genre, poster: r.poster, by: r.added_by, at: r.added_at })),
   };
