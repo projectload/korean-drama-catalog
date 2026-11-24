@@ -220,6 +220,8 @@ label.blk{margin-bottom:10px}
 .heart.on{background:#ff5d7a2e}
 .heart:active{transform:scale(.88)}
 .fav-who{font-size:12px;color:#ff8fa3;margin:-2px 0 4px}
+.player{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;display:grid;place-items:center;padding:12px}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .epbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:4px 0 10px}
 .epbox:empty{display:none}
 .ssel{flex:none;width:auto;min-height:36px;padding:4px 30px 4px 10px;font-size:14px}
@@ -348,7 +350,7 @@ label.blk{margin-bottom:10px}
 <input type="file" id="file" accept=".json" hidden>
 
 <script>
-const BUILD='1795466980';
+const BUILD='1795534356';
 const BUILTIN=[{"id": 1, "name": "Mouse", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 2, "name": "Beyond Evil", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 3, "name": "Flower of Evil", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 4, "name": "Through the Darkness", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 5, "name": "Blind", "year": 2022, "genre": "تحقيقات وغموض"}, {"id": 6, "name": "Nine Puzzles", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 7, "name": "Black Out", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 8, "name": "The Killing Vote", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 9, "name": "Tell Me What You Saw", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 10, "name": "Queen Mantis", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 11, "name": "The Worst of Evil", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 12, "name": "My Name", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 13, "name": "Bloodhounds", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 14, "name": "Mercy for None", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 15, "name": "Gangnam B-Side", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 16, "name": "Vincenzo", "year": 2021, "genre": "عصابات وأكشن"}, {"id": 17, "name": "Narco-Saints", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 18, "name": "A Shop for Killers", "year": 2024, "genre": "عصابات وأكشن"}, {"id": 19, "name": "Trigger", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 20, "name": "Low Life", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 21, "name": "Taxi Driver", "year": 2021, "genre": "انتقام ومؤامرات"}, {"id": 22, "name": "The Manipulated", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 23, "name": "Big Mouth", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 24, "name": "The Glory", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 25, "name": "Vigilante", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 26, "name": "Revenge of Others", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 27, "name": "Karma", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 28, "name": "Buried Hearts", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 29, "name": "The Veil", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 30, "name": "Weak Hero Class 1", "year": 2022, "genre": "أكشن ومخابرات"}, {"id": 31, "name": "Weak Hero Class 2", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 32, "name": "Study Group", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 33, "name": "Moving", "year": 2023, "genre": "أكشن ومخابرات"}, {"id": 34, "name": "Good Boy", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 35, "name": "A Killer Paradox", "year": 2024, "genre": "غموض نفسي"}, {"id": 36, "name": "The Frog", "year": 2024, "genre": "غموض نفسي"}, {"id": 37, "name": "The Price of Confession", "year": 2025, "genre": "غموض نفسي"}, {"id": 38, "name": "The Hunter with a Scalpel", "year": 2025, "genre": "غموض نفسي"}, {"id": 39, "name": "Hyper Knife", "year": 2025, "genre": "غموض نفسي"}, {"id": 40, "name": "As You Stood By", "year": 2025, "genre": "غموض نفسي"}, {"id": 41, "name": "Nobody Knows", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 42, "name": "Stranger 2", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 43, "name": "The Good Detective", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 44, "name": "Extracurricular", "year": 2020, "genre": "عصابات وأكشن"}, {"id": 45, "name": "Train", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 46, "name": "Kairos", "year": 2020, "genre": "غموض نفسي"}, {"id": 47, "name": "Awaken", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 48, "name": "Memorist", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 49, "name": "365: Repeat the Year", "year": 2020, "genre": "غموض نفسي"}, {"id": 50, "name": "Team Bulldog: Off-duty Investigation", "year": 2020, "genre": "تحقيقات وغموض"}, {"id": 51, "name": "Chimera", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 52, "name": "Hometown", "year": 2021, "genre": "غموض نفسي"}, {"id": 53, "name": "One Ordinary Day", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 54, "name": "Bad and Crazy", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 55, "name": "D.P.", "year": 2021, "genre": "أكشن ومخابرات"}, {"id": 56, "name": "Inspector Koo", "year": 2021, "genre": "تحقيقات وغموض"}, {"id": 57, "name": "The King of Pigs", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 58, "name": "A Model Family", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 59, "name": "Insider", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 60, "name": "Military Prosecutor Doberman", "year": 2022, "genre": "انتقام ومؤامرات"}, {"id": 61, "name": "Grid", "year": 2022, "genre": "غموض نفسي"}, {"id": 62, "name": "Connect", "year": 2022, "genre": "غموض نفسي"}, {"id": 63, "name": "Bargain", "year": 2022, "genre": "عصابات وأكشن"}, {"id": 64, "name": "Decoy", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 65, "name": "Longing for You", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 66, "name": "The Kidnapping Day", "year": 2023, "genre": "تحقيقات وغموض"}, {"id": 67, "name": "Evilive", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 68, "name": "The Deal", "year": 2023, "genre": "عصابات وأكشن"}, {"id": 69, "name": "Payback: Money and Power", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 70, "name": "The Escape of the Seven", "year": 2023, "genre": "انتقام ومؤامرات"}, {"id": 71, "name": "Connection", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 72, "name": "Crash", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 73, "name": "Flex X Cop", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 74, "name": "The Bequeathed", "year": 2024, "genre": "غموض نفسي"}, {"id": 75, "name": "Pyramid Game", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 76, "name": "The Whirlwind", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 77, "name": "The Tyrant", "year": 2024, "genre": "أكشن ومخابرات"}, {"id": 78, "name": "No Way Out: The Roulette", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 79, "name": "Doubt", "year": 2024, "genre": "تحقيقات وغموض"}, {"id": 80, "name": "The Judge from Hell", "year": 2024, "genre": "انتقام ومؤامرات"}, {"id": 81, "name": "Unmasked", "year": 2025, "genre": "تحقيقات وغموض"}, {"id": 82, "name": "The Defects", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 83, "name": "Tempest", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 84, "name": "Made in Korea", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 85, "name": "No Mercy", "year": 2025, "genre": "انتقام ومؤامرات"}, {"id": 86, "name": "Walking on Thin Ice", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 87, "name": "Villains", "year": 2025, "genre": "عصابات وأكشن"}, {"id": 88, "name": "Shark: The Storm", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 89, "name": "Undercover High School", "year": 2025, "genre": "أكشن ومخابرات"}, {"id": 90, "name": "Friendly Rivalry", "year": 2025, "genre": "غموض نفسي"}];
 let shows=BUILTIN.slice(),byId={};
 function rebuild(){let hid=new Set((data.hidden||[]).map(h=>h.id));shows=BUILTIN.filter(s=>!hid.has(s.id)).concat((data.custom||[]).map(c=>({id:c.id,name:c.name,year:c.year||'',genre:c.genre||'أخرى',custom:true,by:c.by,at:c.at,poster:c.poster})));byId=Object.fromEntries(shows.map(s=>[s.id,s]))}
@@ -541,7 +543,7 @@ function render(){
 
 /* ---------- Bottom sheet ---------- */
 function openSheet(id){openId=id;$('sheet').classList.remove('full');refreshSheet();$('backdrop').classList.add('show');$('sheet').classList.add('show')}
-function closeSheet(){openId=null;$('sheet').classList.remove('full');$('backdrop').classList.remove('show');$('sheet').classList.remove('show')}
+function closeSheet(){openId=null;let pl=$('player');if(pl)pl.innerHTML='';$('sheet').classList.remove('full');$('backdrop').classList.remove('show');$('sheet').classList.remove('show')}
 function refreshSheet(){
   if(openId==null||typeof openId!=='number')return;let s=byId[openId],x=data.states[openId],state=st(openId);
   let hist=data.log.filter(l=>l.id===openId).slice(0,6);
@@ -556,6 +558,7 @@ function refreshSheet(){
   <div class="epbox c ${showEp?'':'hidden'}" id="epBox"></div>
   <div class="sumplain" id="sumBox"><div class="muted">⏳ جاري تحميل النبذة…</div></div>
   <div class="acts">
+    <button class="act" data-p="trailer">🎬<span>التريلر</span></button>
     <button class="act" data-p="where">📺<span>وين أشاهده</span></button>
     ${showEp?'':'<button class="act" data-p="eps">🎞<span>الحلقات</span></button>'}
     <button class="act" data-p="more">⋯<span>المزيد</span></button>
@@ -571,7 +574,7 @@ function refreshSheet(){
     <button class="mrow red" id="delShow">🗑 حذف المسلسل من القائمة</button>${s.custom?`<div class="muted" style="padding:4px 2px">أضافه ${esc(s.by||'')} ${s.at?ago(s.at):''}</div>`:''}
   </div>`;
   $('sheet').querySelectorAll('.sbtn').forEach(b=>b.onclick=()=>{setState(openId,b.dataset.s);setTimeout(closeSheet,250)});
-  $('sheet').querySelectorAll('.act').forEach(b=>b.onclick=()=>{let k=b.dataset.p;if(k==='eps'){$('epBox').classList.toggle('hidden');b.classList.toggle('on');return}
+  $('sheet').querySelectorAll('.act').forEach(b=>b.onclick=()=>{let k=b.dataset.p;if(k==='trailer'){openTrailer(byId[openId]);return}if(k==='eps'){$('epBox').classList.toggle('hidden');b.classList.toggle('on');return}
     ['where','more'].forEach(n=>{let el=$('p-'+n);if(n===k){el.classList.toggle('hidden');b.classList.toggle('on',!el.classList.contains('hidden'))}else{el.classList.add('hidden')}});
     $('sheet').querySelectorAll('.act').forEach(o=>{if(o!==b&&o.dataset.p!=='eps')o.classList.remove('on')})});
   $('chgPoster').onclick=$('chgPoster2').onclick=()=>openPosterPicker(openId);
@@ -731,6 +734,27 @@ function openTmdb(){
       $('tMsg').textContent=d.error==='invalid'?'TMDB رفض المفتاح — تأكد إنه API Key مو Read Access Token':'تعذّر الحفظ'}catch(e){$('tMsg').textContent='تعذّر الاتصال'}
     b.disabled=false;b.textContent='حفظ وتفعيل'};
   setTimeout(()=>$('tKey').focus(),250);
+}
+
+/* ---------- Trailer ---------- */
+let trCache=ls.get('kd_tr',{});
+async function openTrailer(s){
+  haptic();let back=s.id;openId='trailer';
+  let ytSearch='https://www.youtube.com/results?search_query='+encodeURIComponent(s.name+' '+(s.year||'')+' trailer');
+  openFull(`<div class="full-head"><button class="x" id="trBack" aria-label="رجوع">→</button><h2 dir="ltr">${esc(s.name)}</h2><span style="width:40px"></span></div>
+  <div class="full-body"><div class="player" id="player"><div class="muted">⏳ جاري البحث عن التريلر…</div></div><div id="trInfo" style="margin-top:12px"></div></div>`);
+  $('trBack').onclick=()=>openSheet(back);
+  let d=trCache[s.id];
+  if(!d){try{let r=await fetch(`/api/trailer?id=${s.id}&name=${encodeURIComponent(s.name)}&year=${s.year||''}`,{headers:{'x-key':KEY}});d=r.ok?await r.json():{yt:null}}catch(e){d={yt:null}}
+    if(d.yt){trCache[s.id]=d;ls.set('kd_tr',trCache)}}
+  if(openId!=='trailer')return;
+  if(d.yt){
+    $('player').innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(d.yt)}?autoplay=1&playsinline=1&rel=0&modestbranding=1" title="Trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+    $('trInfo').innerHTML=`${d.title?`<div class="muted" dir="ltr" style="text-align:left;margin-bottom:8px">${esc(d.title)}</div>`:''}<a class="mrow" href="https://www.youtube.com/watch?v=${encodeURIComponent(d.yt)}" target="_blank" rel="noopener">▶️ فتح في يوتيوب</a><a class="mrow" href="${ytSearch}" target="_blank" rel="noopener">🔎 تريلرات ثانية في يوتيوب</a>`;
+  }else{
+    $('player').innerHTML=`<div class="muted" style="text-align:center;line-height:1.8">ما لقيت تريلر رسمي لهذا المسلسل${d.reason==='no_tmdb'?'<br>(فعّل TMDB من حسابي عشان أدور عليه)':''}</div>`;
+    $('trInfo').innerHTML=`<a class="primary wide" style="display:block;text-align:center;text-decoration:none" href="${ytSearch}" target="_blank" rel="noopener">🔎 ابحث عن التريلر في يوتيوب</a>`;
+  }
 }
 
 /* ---------- Favourites ---------- */

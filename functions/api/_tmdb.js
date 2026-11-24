@@ -72,3 +72,18 @@ export async function tmdbSearchPosters(q, key) {
   }
   return out;
 }
+
+// Best YouTube trailer for a TMDB TV id (Korean/English/Arabic), official trailers first.
+export async function tmdbTrailer(tvId, key, season) {
+  const paths = [];
+  if (season && season > 1) paths.push(`/tv/${tvId}/season/${season}/videos`);
+  paths.push(`/tv/${tvId}/videos`);
+  for (const p of paths) {
+    const r = await get(p, key, { include_video_language: 'ko,en,ar,null' });
+    const vids = ((r && r.results) || []).filter((v) => v.site === 'YouTube' && v.key);
+    const score = (v) => (v.type === 'Trailer' ? 4 : v.type === 'Teaser' ? 2 : 0) + (v.official ? 2 : 0) + (v.iso_639_1 === 'ar' ? 1 : 0);
+    vids.sort((a, b) => score(b) - score(a) || (b.size || 0) - (a.size || 0));
+    if (vids.length && score(vids[0]) >= 2) return { yt: vids[0].key, title: vids[0].name };
+  }
+  return null;
+}

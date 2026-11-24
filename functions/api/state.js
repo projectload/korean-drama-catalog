@@ -25,6 +25,7 @@ export async function ensureSchema(db) {
     db.prepare('CREATE TABLE IF NOT EXISTS states (id INTEGER PRIMARY KEY, state TEXT NOT NULL, updated_at INTEGER NOT NULL)'),
     db.prepare('CREATE TABLE IF NOT EXISTS log (rowid INTEGER PRIMARY KEY AUTOINCREMENT, id INTEGER NOT NULL, state TEXT NOT NULL, by TEXT NOT NULL, at INTEGER NOT NULL)'),
     db.prepare('CREATE TABLE IF NOT EXISTS users (name TEXT PRIMARY KEY, last_seen INTEGER NOT NULL)'),
+    db.prepare('CREATE TABLE IF NOT EXISTS trailers (id INTEGER PRIMARY KEY, yt TEXT, title TEXT, at INTEGER NOT NULL)'),
     db.prepare('CREATE TABLE IF NOT EXISTS favs (id INTEGER NOT NULL, by TEXT NOT NULL, at INTEGER NOT NULL, PRIMARY KEY (id, by))'),
     db.prepare('CREATE TABLE IF NOT EXISTS config (k TEXT PRIMARY KEY, v TEXT)'),
     db.prepare('CREATE TABLE IF NOT EXISTS attempts (ip TEXT PRIMARY KEY, n INTEGER NOT NULL, until INTEGER NOT NULL)'),
